@@ -15,10 +15,10 @@ export const MedicineProvider = ({ children }) => {
   const loadMedicines = async () => {
     const storedMeds = await AsyncStorage.getItem('medicines');
     if (storedMeds) {
-      const parsedMeds = JSON.parse(storedMeds).map(med => ({
-        ...med,
-        time: new Date(med.time) // Convert stored string to Date
-      }));
+      const parsedMeds = JSON.parse(storedMeds, (key, value) => {
+        if (key === 'time') return new Date(value);
+        return value;
+      });
       setMedicines(parsedMeds);
     }
   };
@@ -37,7 +37,9 @@ export const MedicineProvider = ({ children }) => {
   };
 
   const addMedicine = async (medicine) => {
-    const newMedicine = { ...medicine, id: Date.now() };
+    const newMedicine = {...medicine,nid: Date.now(),
+      instructions: medicine.instructions || '' // Add this line
+    };
     const updatedMeds = [...medicines, newMedicine];
     setMedicines(updatedMeds);
     await AsyncStorage.setItem('medicines', JSON.stringify(updatedMeds));

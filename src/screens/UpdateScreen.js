@@ -12,11 +12,11 @@ export default function UpdateScreen() {
       
       <FlatList
         data={medicines}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item, index) => item.id ? item.id.toString() : `fallback-${index}`}
         renderItem={({ item }) => (
           <List.Item
             title={item.name}
-            description={`Status: ${item.status || 'Pending'}`}
+            description={`Instructions: ${item.instructions}\nStatus: ${item.status || 'Pending'}`}
             left={props => <List.Icon {...props} icon="pill" />}
           />
         )}

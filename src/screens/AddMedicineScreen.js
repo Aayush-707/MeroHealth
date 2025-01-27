@@ -1,87 +1,112 @@
 import React, { useState, useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Button, TextInput, Title } from 'react-native-paper';
-import DateTimePicker from '@react-native-community/datetimepicker'; // Changed import
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { MedicineContext } from '../context/MedicineContext';
 
-export default function AddMedicineScreen({ navigation }) {
+const AddMedicineScreen = ({ navigation }) => {
+  const [step, setStep] = useState(1);
+  const [visible, setVisible] = useState(false);
   const [medicine, setMedicine] = useState({
     name: '',
     dosage: '',
+    instructions: '',
     frequency: '',
-    time: new Date()
+    time: new Date(),
   });
-  
-  const [showPicker, setShowPicker] = useState(false); // Changed state name
+
   const { addMedicine } = useContext(MedicineContext);
 
-  const handleSubmit = () => {
-    addMedicine(medicine);
-    navigation.goBack();
-  };
-
-  const handleTimeChange = (event, selectedDate) => {
-    setShowPicker(false);
-    if (selectedDate) {
-      setMedicine({ ...medicine, time: selectedDate });
+  const handleNextStep = () => {
+    if (step === 1) {
+      setStep(2);
+    } else {
+      addMedicine(medicine);
+      navigation.goBack();
     }
   };
 
   return (
     <View style={styles.container}>
-      <Title style={styles.title}>Add New Medicine</Title>
+      {step === 1 ? (
+        <>
+          <Title style={styles.title}>Medication</Title>
+          
+          <TextInput
+            label="Medicine Name"
+            value={medicine.name}
+            onChangeText={text => setMedicine({ ...medicine, name: text })}
+            style={styles.input}
+          />
 
-      <TextInput
-        label="Medicine Name"
-        value={medicine.name}
-        onChangeText={text => setMedicine({ ...medicine, name: text })}
-        style={styles.input}
-      />
+          <TextInput
+            label="Dosage"
+            value={medicine.dosage}
+            onChangeText={text => setMedicine({ ...medicine, dosage: text })}
+            style={styles.input}
+          />
 
-      <TextInput
-        label="Dosage"
-        value={medicine.dosage}
-        onChangeText={text => setMedicine({ ...medicine, dosage: text })}
-        style={styles.input}
-      />
+          <TextInput
+            label="Instructions"
+            value={medicine.instructions}
+            onChangeText={text => setMedicine({ ...medicine, instructions: text })}
+            style={styles.input}
+            multiline
+          />
 
-      <TextInput
-        label="Frequency"
-        value={medicine.frequency}
-        onChangeText={text => setMedicine({ ...medicine, frequency: text })}
-        style={styles.input}
-      />
+          <Button 
+            mode="contained" 
+            onPress={handleNextStep}
+            style={styles.button}
+          >
+            Add Schedule
+          </Button>
+        </>
+      ) : (
+        <>
+          <Title style={styles.title}>Schedule</Title>
 
-      <Button 
-        mode="outlined" 
-        onPress={() => setShowPicker(true)}
-        style={styles.timeButton}
-      >
-        {medicine.time.toLocaleTimeString()}
-      </Button>
+          <TextInput
+            label="Frequency"
+            value={medicine.frequency}
+            onChangeText={text => setMedicine({ ...medicine, frequency: text })}
+            style={styles.input}
+          />
 
-      {showPicker && (
-        <DateTimePicker
-          value={medicine.time}
-          mode="time"
-          is24Hour={true}
-          display="spinner"
-          onChange={handleTimeChange}
-        />
+          <Button 
+            mode="outlined" 
+            onPress={() => setVisible(true)}
+            style={styles.timeButton}
+          >
+            {medicine.time.toLocaleTimeString()}
+          </Button>
+
+          {visible && (
+            <DateTimePicker
+              value={medicine.time}
+              mode="time"
+              display="spinner"
+              onChange={(event, selectedTime) => {
+                setVisible(false);
+                if (selectedTime) {
+                  setMedicine({ ...medicine, time: selectedTime });
+                }
+              }}
+            />
+          )}
+
+          <Button 
+            mode="contained" 
+            onPress={handleNextStep}
+            style={styles.button}
+          >
+            Submit
+          </Button>
+        </>
       )}
-
-      <Button 
-        mode="contained" 
-        onPress={handleSubmit}
-        style={styles.button}
-      >
-        Add Medicine
-      </Button>
     </View>
   );
-}
-
-// Keep the same styles
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -105,3 +130,5 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
 });
+
+export default AddMedicineScreen;

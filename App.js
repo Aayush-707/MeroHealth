@@ -1,16 +1,16 @@
-// App.js
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { Provider as PaperProvider } from 'react-native-paper';
 import AuthStackScreen from './src/navigation/AuthStack';
 import AppStackScreen from './src/navigation/AppStack';
 import { UserProvider } from './src/context/UserContext';
 import { MedicineProvider } from './src/context/MedicineContext';
-import { useContext } from 'react'; // Add this
-import { UserContext } from './src/context/UserContext'; // Add this
+import { useContext } from 'react';
+import { UserContext } from './src/context/UserContext';
 
 const RootStack = createStackNavigator();
 
-function RootNavigator() { // New component
+function RootNavigator() {
   const { user } = useContext(UserContext);
 
   return (
@@ -26,12 +26,14 @@ function RootNavigator() { // New component
 
 export default function App() {
   return (
-    <UserProvider>
-      <MedicineProvider>
-        <NavigationContainer>
-          <RootNavigator /> {/* Replace the old navigator with this */}
-        </NavigationContainer>
-      </MedicineProvider>
-    </UserProvider>
+    <PaperProvider>
+      <UserProvider>
+        <MedicineProvider>
+          <NavigationContainer>
+            <RootNavigator />
+          </NavigationContainer>
+        </MedicineProvider>
+      </UserProvider>
+    </PaperProvider>
   );
 }

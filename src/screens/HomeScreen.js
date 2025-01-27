@@ -12,14 +12,15 @@ export default function HomeScreen({ navigation }) {
     <View style={styles.container}>
       <FlatList
         data={medicines}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item, index) => item.id ? item.id.toString() : `fallback-${index}`}
         renderItem={({ item }) => (
           <Card style={styles.card}>
             <Card.Content>
               <Title>{item.name}</Title>
-              <Paragraph>Dosage: {item.dosage}</Paragraph>
-              <Paragraph>Frequency: {item.frequency}</Paragraph>
-              <Paragraph>Time: {item.time?.toLocaleTimeString?.() || 'Invalid time'}</Paragraph>
+                <Paragraph>Dosage: {item.dosage}</Paragraph>
+                <Paragraph>Instructions: {item.instructions}</Paragraph>
+                <Paragraph>Frequency: {item.frequency}</Paragraph>
+                <Paragraph>Time: {item.time.toLocaleTimeString()}</Paragraph>
             </Card.Content>
           </Card>
         )}
