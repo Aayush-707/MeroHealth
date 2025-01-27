@@ -100,7 +100,7 @@ const AddMedicineScreen = ({ navigation }) => {
             onPress={handleNextStep}
             style={styles.button}
           >
-            Submit
+            Done
           </Button>
         </>
       )}

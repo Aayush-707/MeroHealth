@@ -12,8 +12,16 @@ const HomeStack = createStackNavigator();
 function HomeStackScreen() {
   return (
     <HomeStack.Navigator>
-      <HomeStack.Screen name="Home" component={HomeScreen} />
-      <HomeStack.Screen name="AddMedicine" component={AddMedicineScreen} />
+      <HomeStack.Screen
+        name="Main"
+        component={HomeScreen}
+        options={{ title: 'MeroHealth' }}
+      />
+      <HomeStack.Screen
+        name="AddMedicine"
+        component={AddMedicineScreen}
+        options={{ title: 'Add Medicine' }}
+      />
     </HomeStack.Navigator>
   );
 }
@@ -32,7 +40,7 @@ export default function AppStackScreen() {
         },
       })}
     >
-      <Tab.Screen name="Main" component={HomeStackScreen} />
+      <Tab.Screen name="Home" component={HomeStackScreen} />
       <Tab.Screen name="Update" component={UpdateScreen} />
       <Tab.Screen name="Account" component={AccountScreen} />
     </Tab.Navigator>

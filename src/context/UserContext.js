@@ -4,20 +4,19 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  // Temporary default user setup
-  const [user, setUser] = useState({
-    email: 'test@patient.com',
-    name: 'John Doe',
-    role: 'Patient',
-    age: '30',
-    gender: 'Male'
-  });
-  
-  const [role, setRole] = useState('Patient');
+  const [user, setUser] = useState(null);
+  const [role, setRole] = useState(null);
 
   const login = async (email, password) => {
-    // Bypassed login for temporary access
-    return user; // Return the default user
+    // Add actual authentication logic
+    const userData = await AsyncStorage.getItem('users');
+    const users = JSON.parse(userData);
+    const foundUser = users.find(u => u.email === email && u.password === password);
+    if (foundUser) {
+      setUser(foundUser);
+      setRole(foundUser.role);
+    }
+    return foundUser;
   };
 
   const register = async (userData) => {
