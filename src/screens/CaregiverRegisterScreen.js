@@ -1,40 +1,77 @@
-import React, { useState, useContext } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Button, TextInput, Title } from 'react-native-paper';
-import { UserContext } from '../context/UserContext';
+import React, { useState } from 'react';
+import { View, StyleSheet, Alert } from 'react-native';
+import { TextInput, Button, Title } from 'react-native-paper';
+import api from '../services/api';
 
-export default function CaregiverRegisterScreen({ navigation }) {
-  const [formData, setFormData] = useState({
-    email: '',
-    name: '',
-    patientEmail: '',
-    relationship: '',
-    password: '',
-  });
+export default function CaregiverRegistration({ navigation }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [age, setAge] = useState('');
+  const [gender, setGender] = useState('');
 
-  const { register } = useContext(UserContext);
-
-  const handleRegister = () => {
-    register({ ...formData, role: 'Caregiver' });
-    navigation.navigate('Login');
+  const handleRegister = async () => {
+    try {
+      const response = await api.post('/users/register/', {
+        email,
+        password,
+        name,
+        age: parseInt(age), // Ensure age is sent as an integer
+        gender,
+        user_type: 'CAREGIVER',
+      });
+      Alert.alert('Success', 'Registration successful!', [
+        { text: 'OK', onPress: () => navigation.navigate('Login') },
+      ]);
+    } catch (error) {
+      console.error('Error during registration:', error.response?.data || error.message);
+      Alert.alert('Error', 'Registration failed. Please try again.');
+    }
   };
 
   return (
     <View style={styles.container}>
       <Title style={styles.title}>Caregiver Registration</Title>
-
-      {Object.keys(formData).map((field) => (
-        <TextInput
-          key={field}
-          label={field.charAt(0).toUpperCase() + field.slice(1)}
-          value={formData[field]}
-          onChangeText={(text) => setFormData({ ...formData, [field]: text })}
-          style={styles.input}
-          secureTextEntry={field === 'password'}
-          keyboardType={field.includes('email') ? 'email-address' : 'default'}
-        />
-      ))}
-
+      
+      <TextInput
+        label="Email"
+        value={email}
+        onChangeText={setEmail}
+        style={styles.input}
+        keyboardType="email-address"
+        autoCapitalize="none"
+      />
+      
+      <TextInput
+        label="Password"
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+        style={styles.input}
+      />
+      
+      <TextInput
+        label="Name"
+        value={name}
+        onChangeText={setName}
+        style={styles.input}
+      />
+      
+      <TextInput
+        label="Age"
+        value={age}
+        onChangeText={setAge}
+        keyboardType="numeric"
+        style={styles.input}
+      />
+      
+      <TextInput
+        label="Gender (M/F/O)"
+        value={gender}
+        onChangeText={setGender}
+        style={styles.input}
+      />
+      
       <Button mode="contained" onPress={handleRegister} style={styles.button}>
         Register
       </Button>
@@ -42,11 +79,11 @@ export default function CaregiverRegisterScreen({ navigation }) {
   );
 }
 
-// Fixed styles definition
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    justifyContent: 'center',
   },
   title: {
     fontSize: 24,
@@ -57,7 +94,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   button: {
-    marginTop: 20,
+    marginTop: 10,
     paddingVertical: 5,
   },
 });
