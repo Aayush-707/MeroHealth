@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import api from '../services/api';
 
 export const UserContext = createContext();
 
@@ -8,21 +9,28 @@ export const UserProvider = ({ children }) => {
   const [role, setRole] = useState(null);
 
   const login = async (email, password) => {
-    // Add actual authentication logic
-    const userData = await AsyncStorage.getItem('users');
-    const users = JSON.parse(userData);
-    const foundUser = users.find(u => u.email === email && u.password === password);
-    if (foundUser) {
-      setUser(foundUser);
-      setRole(foundUser.role);
+    try {
+      const response = await api.post('/users/login/', { email, password });
+      console.log('Login successful:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Login error:', error.message); // Log error message
+      if (error.response) {
+        console.error('Error response data:', error.response.data); // Log server response
+        console.error('Error status:', error.response.status); // Log HTTP status code
+      }
+      return null;
     }
-    return foundUser;
   };
+  
+  
 
   const register = async (userData) => {
-    const existingUsers = JSON.parse(await AsyncStorage.getItem('users')) || [];
-    existingUsers.push(userData);
-    await AsyncStorage.setItem('users', JSON.stringify(existingUsers));
+    try {
+      await api.post('/users/register/', userData);
+    } catch (error) {
+      console.error('Error during registration:', error);
+    }
   };
 
   return (
