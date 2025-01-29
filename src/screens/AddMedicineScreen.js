@@ -40,13 +40,6 @@ const AddMedicineScreen = ({ navigation }) => {
           />
 
           <TextInput
-            label="Dosage"
-            value={medicine.dosage}
-            onChangeText={text => setMedicine({ ...medicine, dosage: text })}
-            style={styles.input}
-          />
-
-          <TextInput
             label="Instructions"
             value={medicine.instructions}
             onChangeText={text => setMedicine({ ...medicine, instructions: text })}
@@ -73,6 +66,13 @@ const AddMedicineScreen = ({ navigation }) => {
             style={styles.input}
           />
 
+          <TextInput
+            label="Dosage"
+            value={medicine.dosage}
+            onChangeText={text => setMedicine({ ...medicine, dosage: text })}
+            style={styles.input}
+          />
+          
           <Button 
             mode="outlined" 
             onPress={() => setVisible(true)}
