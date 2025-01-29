@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import * as Notifications from 'expo-notifications';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import api from '../services/api';
 
 export const MedicineContext = createContext();
 
@@ -13,13 +14,22 @@ export const MedicineProvider = ({ children }) => {
   }, []);
 
   const loadMedicines = async () => {
-    const storedMeds = await AsyncStorage.getItem('medicines');
-    if (storedMeds) {
-      const parsedMeds = JSON.parse(storedMeds, (key, value) => {
-        if (key === 'time') return new Date(value);
-        return value;
-      });
-      setMedicines(parsedMeds);
+    try {
+      const response = await api.get('/medications/schedules/');
+      setMedicines(response.data); // Set medicines from backend
+    } catch (error) {
+      console.error('Error loading medicines:', error);
+    }
+  };
+
+  const addMedicine = async (medicine) => {
+    try {
+      const response = await api.post('/medications/schedules/', medicine);
+      const newMedicine = response.data;
+      setMedicines((prev) => [...prev, newMedicine]); // Add new medicine to state
+      scheduleNotification(newMedicine);
+    } catch (error) {
+      console.error('Error adding medicine:', error);
     }
   };
 
@@ -36,20 +46,8 @@ export const MedicineProvider = ({ children }) => {
     });
   };
 
-  const addMedicine = async (medicine) => {
-    const newMedicine = {...medicine,nid: Date.now(),
-      instructions: medicine.instructions || '' // Add this line
-    };
-    const updatedMeds = [...medicines, newMedicine];
-    setMedicines(updatedMeds);
-    await AsyncStorage.setItem('medicines', JSON.stringify(updatedMeds));
-    scheduleNotification(newMedicine);
-  };
-
   const scheduleNotification = async (medicine) => {
-    const triggerTime = medicine.time instanceof Date 
-      ? medicine.time 
-      : new Date(medicine.time);
+    const triggerTime = new Date(medicine.time);
 
     await Notifications.scheduleNotificationAsync({
       content: {
@@ -65,26 +63,6 @@ export const MedicineProvider = ({ children }) => {
     });
   };
 
-  const handleNotificationResponse = (response) => {
-    const { medicineId } = response.notification.request.content.data;
-    const medicine = medicines.find(m => m.id === medicineId);
-    
-    if (medicine) {
-      const updatedMeds = medicines.map(m => 
-        m.id === medicineId ? { ...m, status: response.actionIdentifier } : m
-      );
-      setMedicines(updatedMeds);
-      AsyncStorage.setItem('medicines', JSON.stringify(updatedMeds));
-    }
-  };
-  
-  useEffect(() => {
-    const subscription = Notifications.addNotificationResponseReceivedListener(
-      handleNotificationResponse
-    );
-    return () => subscription.remove();
-  }, [medicines]);
-  
   return (
     <MedicineContext.Provider value={{ medicines, addMedicine }}>
       {children}
