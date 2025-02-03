@@ -25,7 +25,8 @@
     "react": "18.3.1",
     "react-native": "0.76.6",
     "react-native-paper": "^5.13.1",
-    "react-native-paper-dates": "^0.22.29"
+    "react-native-paper-dates": "^0.22.29",
+    "expo-linear-gradient": "~14.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Alert } from 'react-native';
-import { TextInput, Button, Title } from 'react-native-paper';
+import { TextInput, Button, Text } from 'react-native-paper';
 import api from '../services/api';
 
 export default function PatientRegistration({ navigation }) {
@@ -16,7 +16,7 @@ export default function PatientRegistration({ navigation }) {
         email,
         password,
         name,
-        age: parseInt(age), // Ensure age is sent as an integer
+        age: parseInt(age),
         gender,
         user_type: 'PATIENT',
       });
@@ -31,8 +31,10 @@ export default function PatientRegistration({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Title style={styles.title}>Patient Registration</Title>
-      
+      <Text variant="headlineMedium" style={styles.title}>
+        Patient Registration
+      </Text>
+
       <TextInput
         label="Email"
         value={email}
@@ -40,39 +42,64 @@ export default function PatientRegistration({ navigation }) {
         style={styles.input}
         keyboardType="email-address"
         autoCapitalize="none"
+        mode="outlined"
+        outlineColor="#e0e0e0"
+        activeOutlineColor="#1e90ff"
+        theme={{ roundness: 25 }}
       />
-      
+
       <TextInput
         label="Password"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
         style={styles.input}
+        mode="outlined"
+        outlineColor="#e0e0e0"
+        activeOutlineColor="#1e90ff"
+        theme={{ roundness: 25 }}
       />
-      
+
       <TextInput
         label="Name"
         value={name}
         onChangeText={setName}
         style={styles.input}
+        mode="outlined"
+        outlineColor="#e0e0e0"
+        activeOutlineColor="#1e90ff"
+        theme={{ roundness: 25 }}
       />
-      
+
       <TextInput
         label="Age"
         value={age}
         onChangeText={setAge}
         keyboardType="numeric"
         style={styles.input}
+        mode="outlined"
+        outlineColor="#e0e0e0"
+        activeOutlineColor="#1e90ff"
+        theme={{ roundness: 25 }}
       />
-      
+
       <TextInput
         label="Gender (M/F/O)"
         value={gender}
         onChangeText={setGender}
         style={styles.input}
+        mode="outlined"
+        outlineColor="#e0e0e0"
+        activeOutlineColor="#1e90ff"
+        theme={{ roundness: 25 }}
       />
-      
-      <Button mode="contained" onPress={handleRegister} style={styles.button}>
+
+      <Button 
+        mode="contained" 
+        onPress={handleRegister}
+        style={styles.button}
+        labelStyle={styles.buttonLabel}
+      >
         Register
       </Button>
     </View>
@@ -82,19 +109,30 @@ export default function PatientRegistration({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 25,
     justifyContent: 'center',
+    backgroundColor: 'white',
   },
   title: {
-    fontSize: 24,
-    marginBottom: 20,
+    fontSize: 32,
+    marginBottom: 20,  // Reduced from 30
+    color: '#1a237e',
+    fontWeight: '700',
     textAlign: 'center',
   },
   input: {
-    marginBottom: 15,
+    marginBottom: 12,  // Reduced from 20
+    backgroundColor: 'white',
   },
   button: {
-    marginTop: 10,
+    marginTop: 20,     // Adjusted for new spacing
+    borderRadius: 25,
     paddingVertical: 5,
+    backgroundColor: '#1e90ff',
+    elevation: 2,
+  },
+  buttonLabel: {
+    fontSize: 16,
+    fontWeight: '600',
   },
 });

@@ -2,7 +2,9 @@ import React, { useState, useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Button, TextInput, Title } from 'react-native-paper';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { MaterialIcons } from '@expo/vector-icons';
 import { MedicineContext } from '../context/MedicineContext';
+
 
 const AddMedicineScreen = ({ navigation }) => {
   const [step, setStep] = useState(1);
@@ -37,6 +39,8 @@ const AddMedicineScreen = ({ navigation }) => {
             value={medicine.name}
             onChangeText={text => setMedicine({ ...medicine, name: text })}
             style={styles.input}
+            mode="outlined"
+            theme={{ roundness: 20 }}
           />
 
           <TextInput
@@ -45,6 +49,8 @@ const AddMedicineScreen = ({ navigation }) => {
             onChangeText={text => setMedicine({ ...medicine, instructions: text })}
             style={styles.input}
             multiline
+            mode="outlined"
+            theme={{ roundness: 20 }}
           />
 
           <Button 
@@ -64,6 +70,8 @@ const AddMedicineScreen = ({ navigation }) => {
             value={medicine.frequency}
             onChangeText={text => setMedicine({ ...medicine, frequency: text })}
             style={styles.input}
+            mode="outlined"
+            theme={{ roundness: 20 }}
           />
 
           <TextInput
@@ -71,6 +79,8 @@ const AddMedicineScreen = ({ navigation }) => {
             value={medicine.dosage}
             onChangeText={text => setMedicine({ ...medicine, dosage: text })}
             style={styles.input}
+            mode="outlined"
+            theme={{ roundness: 20 }}
           />
           
           <Button 

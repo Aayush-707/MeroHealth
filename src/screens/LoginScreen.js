@@ -15,8 +15,11 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Title style={styles.title}>MeroHealth</Title>
-      
+      <View style={styles.header}>
+        <Title style={styles.title}>MeroHealth</Title>
+        <Text style={styles.subtitle}>Your Personalized Health Companion</Text>
+      </View>
+
       <TextInput
         label="Email"
         value={email}
@@ -24,6 +27,10 @@ export default function LoginScreen({ navigation }) {
         style={styles.input}
         keyboardType="email-address"
         autoCapitalize="none"
+        mode="outlined"
+        outlineColor="#e0e0e0"
+        activeOutlineColor="#1e90ff"
+        theme={{ roundness: 25 }}
       />
 
       <TextInput
@@ -32,9 +39,18 @@ export default function LoginScreen({ navigation }) {
         onChangeText={setPassword}
         secureTextEntry
         style={styles.input}
+        mode="outlined"
+        outlineColor="#e0e0e0"
+        activeOutlineColor="#1e90ff"
+        theme={{ roundness: 25 }}
       />
 
-      <Button mode="contained" onPress={handleLogin} style={styles.button}>
+      <Button 
+        mode="contained" 
+        onPress={handleLogin} 
+        style={styles.button}
+        labelStyle={styles.buttonLabel}
+      >
         Login
       </Button>
 
@@ -51,28 +67,44 @@ export default function LoginScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 25,
     justifyContent: 'center',
+    backgroundColor: 'white',
+  },
+  header: {
+    marginBottom: 30,  // Reduced from 40
+    alignItems: 'center',
+    marginTop: 40,     // Reduced from 50
   },
   title: {
-    fontSize: 24,
-    marginBottom: 20,
+    fontSize: 32,
+    marginBottom: 8,   // Existing value kept
+    color: '#1a237e',
+    fontWeight: '700',
+  },
+  subtitle: {
+    fontSize: 16,
+    color: '#424242',
     textAlign: 'center',
+    marginBottom: 8,   // Added for subtitle spacing
   },
   input: {
-    marginBottom: 15,
+    marginBottom: 12,  // Reduced from 20
+    backgroundColor: 'white',
   },
   button: {
-    marginTop: 10,
+    marginTop: 20,     // Increased from 15 to compensate
+    borderRadius: 25,
     paddingVertical: 5,
+    elevation: 2,
   },
   registerContainer: {
     flexDirection: 'row',
-    marginTop: 20,
+    marginTop: 20,     // Reduced from 25
     justifyContent: 'center',
   },
   registerText: {
     color: '#1e90ff',
-    fontWeight: 'bold',
+    fontWeight: '600',
   },
 });
