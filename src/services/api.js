@@ -8,16 +8,34 @@ const api = axios.create({
   timeout: 5000,
 });
 
-// Add a request interceptor to include tokens in headers
-api.interceptors.request.use(
-  async (config) => {
-    const token = await AsyncStorage.getItem('access_token'); // Retrieve token from storage
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => Promise.reject(error)
+// Request interceptor
+api.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+      const originalRequest = error.config;
+      
+      if (error.response.status === 401 && !originalRequest._retry) {
+          originalRequest._retry = true;
+          
+          try {
+              const refreshToken = await AsyncStorage.getItem('refresh_token');
+              const response = await api.post('/users/token/refresh/', {
+                  refresh: refreshToken
+              });
+              
+              const { access } = response.data;
+              await AsyncStorage.setItem('access_token', access);
+              
+              originalRequest.headers['Authorization'] =  `Bearer ${access}`;
+              return api(originalRequest);
+          } catch (refreshError) {
+              // Handle refresh failure - redirect to login
+              return Promise.reject(refreshError);
+          }
+      }
+      return Promise.reject(error);
+  }
 );
+
 
 export default api;

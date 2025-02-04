@@ -8,19 +8,19 @@ import { MedicineProvider } from './src/context/MedicineContext';
 import { useContext } from 'react';
 import { UserContext } from './src/context/UserContext';
 
-const RootStack = createStackNavigator();
+const Stack = createStackNavigator();
 
 function RootNavigator() {
   const { user } = useContext(UserContext);
 
   return (
-    <RootStack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       {user ? (
-        <RootStack.Screen name="App" component={AppStackScreen} />
+        <Stack.Screen name="App" component={AppStackScreen} />
       ) : (
-        <RootStack.Screen name="Auth" component={AuthStackScreen} />
+        <Stack.Screen name="Auth" component={AuthStackScreen} />
       )}
-    </RootStack.Navigator>
+    </Stack.Navigator>
   );
 }
 

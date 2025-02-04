@@ -10,7 +10,11 @@ export default function LoginScreen({ navigation }) {
 
   const handleLogin = async () => {
     const success = await login(email, password);
-    if (!success) alert('Invalid credentials');
+    if (success) {
+      // Reset navigation stack and move to App stack
+    } else {
+      Alert.alert('Login Failed', 'Invalid credentials');
+    }
   };
 
   return (
