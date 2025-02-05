@@ -8,11 +8,6 @@ export default function AccountScreen({ navigation }) {
 
   const handleLogout = () => {
     logout();
-    // Reset navigation stack to prevent going back
-    navigation.reset({
-      index: 0,
-      routes: [{ name: 'Login' }],
-    });
   };
 
   return (

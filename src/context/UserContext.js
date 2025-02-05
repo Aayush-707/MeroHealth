@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import api from '../services/api';
 
@@ -7,6 +7,30 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [role, setRole] = useState(null);
+
+  useEffect(() => {
+    const loadUser = async () => {
+      try {
+        const storedRole = await AsyncStorage.getItem('user_role');
+        const accessToken = await AsyncStorage.getItem('access_token');
+
+        if (accessToken) {
+          const userResponse = await api.get('/users/profile/', {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          });
+
+          setUser(userResponse.data);
+          setRole(userResponse.data.user_type);
+        } else if (storedRole) {
+          setRole(storedRole);
+        }
+      } catch (error) {
+        console.error('Error loading user:', error);
+      }
+    };
+
+    loadUser();
+  }, []);
 
   const login = async (email, password) => {
     try {
@@ -25,6 +49,7 @@ export const UserProvider = ({ children }) => {
       setUser(userResponse.data);
       setRole(userResponse.data.user_type);
       return true;
+      
     } catch (error) {
       console.error('Login error:', error);
       return false;
@@ -39,8 +64,20 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+
+  const logout = async () => {
+    try {
+      await AsyncStorage.removeItem('access_token');
+      await AsyncStorage.removeItem('refresh_token');
+      setUser(null);  // Reset user state
+      setRole(null);  // Reset role state
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
+  
   return (
-    <UserContext.Provider value={{ user, role, login, register }}>
+    <UserContext.Provider value={{ user, role, login, register, logout }}>
       {children}
     </UserContext.Provider>
   );

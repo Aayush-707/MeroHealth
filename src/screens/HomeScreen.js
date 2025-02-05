@@ -7,7 +7,7 @@ import { UserContext } from '../context/UserContext';
 export default function HomeScreen({ navigation }) {
   const { medicines } = useContext(MedicineContext);
   const { role } = useContext(UserContext);
-
+  
   return (
     <View style={styles.container}>
       {medicines.length === 0 ? (
@@ -52,7 +52,7 @@ export default function HomeScreen({ navigation }) {
         />
       )}
 
-      {role === 'Patient' && (
+      {role === 'PATIENT' && (
         <FAB
           style={styles.fab}
           icon="plus"
