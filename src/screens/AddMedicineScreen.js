@@ -80,6 +80,22 @@ const AddMedicineScreen = ({ navigation }) => {
              </Picker>
            </View>
 
+           <View style={styles.pickerContainer}>
+            <Picker
+              selectedValue={medicine.timing}
+              onValueChange={(itemValue) => setMedicine({ ...medicine, timing: itemValue })}
+              style={styles.picker}
+              mode="outlined"
+               theme={{ roundness: 20 }}
+            >
+             <Picker.Item label="Select Timing" value="" />
+             <Picker.Item label="Before Meal" value="BEFORE_MEAL" />
+             <Picker.Item label="After Meal" value="AFTER_MEAL" />
+             <Picker.Item label="With Meal" value="WITH_MEAL" />
+             <Picker.Item label="Any Time" value="ANY_TIME" />
+             </Picker>
+           </View>
+
           <TextInput
             label="Dosage"
             value={medicine.dosage}
@@ -145,7 +161,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   picker: {
-    height: 50,
+    height: 52,
     width: '100%',
   },
   timeButton: {
