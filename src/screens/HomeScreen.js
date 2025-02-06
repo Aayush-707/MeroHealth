@@ -22,7 +22,10 @@ export default function HomeScreen({ navigation }) {
           }
           contentContainerStyle={styles.listContent}
           renderItem={({ item }) => (
-            <Card style={styles.card}>
+            <Card style={styles.card}
+            onPress={() => navigation.navigate('MedicationDetail', { 
+              medicationId: item.id 
+            })}>
               <Card.Content>
                 <Title style={styles.medicineTitle}>{item.name}</Title>
 

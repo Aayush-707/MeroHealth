@@ -89,9 +89,37 @@ export const MedicineProvider = ({ children }) => {
     });
   };
 
+const getMedicationDetails = async (medicationId) => {
+  try {
+    const response = await api.get(`/medications/${medicationId}/`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching medication details:', error);
+    return null;
+  }
+};
+
+  const getScheduleDetails = async (scheduleId) => {
+    try {
+      const response = await api.get(`/medications/schedules/${scheduleId}/`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching schedule details:', error);
+      return null;
+    }
+  };
+
+  // Add these to the context provider value
   return (
-    <MedicineContext.Provider value={{ medicines, createMedicinePartial, updateMedicineDetails }}>
+    <MedicineContext.Provider value={{ 
+      medicines, 
+      createMedicinePartial, 
+      updateMedicineDetails,
+      getMedicationDetails,
+      getScheduleDetails
+    }}>
       {children}
     </MedicineContext.Provider>
   );
+
 };

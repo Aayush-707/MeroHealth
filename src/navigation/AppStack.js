@@ -5,6 +5,7 @@ import HomeScreen from '../screens/HomeScreen';
 import UpdateScreen from '../screens/UpdateScreen';
 import AccountScreen from '../screens/AccountScreen';
 import AddMedicineScreen from '../screens/AddMedicineScreen';
+import MedicationDetailScreen from '../screens/MedicationDetailScreen'
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
@@ -61,6 +62,11 @@ function HomeStackScreen() {
             />
           )
         }}
+      />
+      <HomeStack.Screen
+        name="MedicationDetail"
+        component={MedicationDetailScreen}
+        options={{ title: 'Medication Details' }}
       />
     </HomeStack.Navigator>
   );
