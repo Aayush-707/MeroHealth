@@ -2,9 +2,8 @@ import React, { useState, useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Button, TextInput, Title } from 'react-native-paper';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { MaterialIcons } from '@expo/vector-icons';
 import { MedicineContext } from '../context/MedicineContext';
-
+import { Picker } from '@react-native-picker/picker';
 
 const AddMedicineScreen = ({ navigation }) => {
   const [step, setStep] = useState(1);
@@ -58,21 +57,28 @@ const AddMedicineScreen = ({ navigation }) => {
             onPress={handleNextStep}
             style={styles.button}
           >
-            Add Schedule
+            Next
           </Button>
         </>
       ) : (
         <>
           <Title style={styles.title}>Schedule</Title>
 
-          <TextInput
-            label="Frequency"
-            value={medicine.frequency}
-            onChangeText={text => setMedicine({ ...medicine, frequency: text })}
-            style={styles.input}
-            mode="outlined"
-            theme={{ roundness: 20 }}
-          />
+          <View style={styles.pickerContainer}>
+            <Picker
+              selectedValue={medicine.frequency}
+              onValueChange={(itemValue) => setMedicine({ ...medicine, frequency: itemValue })}
+              style={styles.picker}
+              mode="outlined"
+               theme={{ roundness: 20 }}
+            >
+             <Picker.Item label="Select Frequency" value="" />
+             <Picker.Item label="Daily" value="DAILY" />
+             <Picker.Item label="Weekly" value="WEEKLY" />
+             <Picker.Item label="Monthly" value="MONTHLY" />
+             <Picker.Item label="As Needed" value="AS_NEEDED" />
+             </Picker>
+           </View>
 
           <TextInput
             label="Dosage"
@@ -130,6 +136,17 @@ const styles = StyleSheet.create({
   },
   input: {
     marginBottom: 15,
+  },
+  pickerContainer: {
+    borderWidth: 1,
+    borderColor: '#808080',
+    borderRadius: 20,
+    marginBottom: 15,
+    overflow: 'hidden',
+  },
+  picker: {
+    height: 50,
+    width: '100%',
   },
   timeButton: {
     marginVertical: 15,
