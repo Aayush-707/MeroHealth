@@ -17,27 +17,38 @@ export default function HomeScreen({ navigation }) {
       ) : (
         <FlatList
           data={medicines}
-          keyExtractor={(item, index) => item.id ? item.id.toString() : `fallback-${index}`}
+          keyExtractor={(item, index) =>
+            item.id ? item.id.toString() : `fallback-${index}`
+          }
           contentContainerStyle={styles.listContent}
           renderItem={({ item }) => (
             <Card style={styles.card}>
               <Card.Content>
                 <Title style={styles.medicineTitle}>{item.name}</Title>
-                
+
                 <View style={styles.detailRow}>
                   <Paragraph style={styles.detailLabel}>Dosage:</Paragraph>
-                  <Paragraph style={styles.detailValue}>{item.dosage}</Paragraph>
+                  <Paragraph style={styles.detailValue}>
+                    {item.dosage}
+                  </Paragraph>
                 </View>
 
                 <View style={styles.detailRow}>
                   <Paragraph style={styles.detailLabel}>Frequency:</Paragraph>
-                  <Paragraph style={styles.detailValue}>{item.frequency}</Paragraph>
+                  <Paragraph style={styles.detailValue}>
+                    {item.frequency}
+                  </Paragraph>
                 </View>
 
                 <View style={styles.detailRow}>
-                  <Paragraph style={styles.detailLabel}>Time:</Paragraph>
                   <Paragraph style={styles.detailValue}>
-                    {item.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    {item.time
+                      ? new 
+                      Date(item.time).toLocaleTimeString([], {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })
+                      : "No time available"}
                   </Paragraph>
                 </View>
 
@@ -52,12 +63,12 @@ export default function HomeScreen({ navigation }) {
         />
       )}
 
-      {role === 'PATIENT' && (
+      {role === "PATIENT" && (
         <FAB
           style={styles.fab}
           icon="plus"
           color="white"
-          onPress={() => navigation.navigate('AddMedicine')}
+          onPress={() => navigation.navigate("AddMedicine")}
         />
       )}
     </View>

@@ -7,22 +7,44 @@ import { Picker } from '@react-native-picker/picker';
 
 const AddMedicineScreen = ({ navigation }) => {
   const [step, setStep] = useState(1);
+  // For toggling the DateTimePicker
   const [visible, setVisible] = useState(false);
+  // To hold the medicine state including its ID (if created)
   const [medicine, setMedicine] = useState({
     name: '',
-    dosage: '',
     instructions: '',
+    dosage: '',
     frequency: '',
+    timing: '',
     time: new Date(),
   });
+  
+  // To save the medicine record returned from the backend after step 1
+  const [medicineId, setMedicineId] = useState(null);
 
-  const { addMedicine } = useContext(MedicineContext);
+  const { createMedicinePartial, updateMedicineDetails } = useContext(MedicineContext);
 
-  const handleNextStep = () => {
+  const handleNextStep = async () => {
     if (step === 1) {
-      setStep(2);
+      // Create medicine with partial data (name & instructions)
+      const partialData = {
+        name: medicine.name,
+        instructions: medicine.instructions,
+      };
+      const createdMedicine = await createMedicinePartial(partialData);
+      if (createdMedicine) {
+        setMedicineId(createdMedicine.id);
+        setStep(2);
+      }
     } else {
-      addMedicine(medicine);
+      // Prepare the additional details for update
+      const updateData = {
+        dosage: medicine.dosage,
+        frequency: medicine.frequency,
+        timing: medicine.timing,
+        time: medicine.time,
+      };
+      await updateMedicineDetails(medicineId, updateData);
       navigation.goBack();
     }
   };

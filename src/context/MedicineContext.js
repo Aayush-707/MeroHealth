@@ -15,28 +15,55 @@ export const MedicineProvider = ({ children }) => {
 
   const loadMedicines = async () => {
     try {
-      const response = await api.get('/medications/schedules/');
-      setMedicines(response.data); // Set medicines from backend
+      const accessToken = await AsyncStorage.getItem('access_token');
+      const response = await api.get('/medications/schedules/', {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+      setMedicines(response.data);
     } catch (error) {
       console.error('Error loading medicines:', error);
     }
   };
 
-  const addMedicine = async (medicine) => {
+  // Call this on the first screen to save medicine name and instructions
+  const createMedicinePartial = async (partialMedicine) => {
     try {
-      const response = await api.post('/medications/schedules/', medicine);
-      const newMedicine = response.data;
-      setMedicines((prev) => [...prev, newMedicine]); // Add new medicine to state
-      scheduleNotification(newMedicine);
+      const accessToken = await AsyncStorage.getItem('access_token');
+      const response = await api.post('/medications/', partialMedicine, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+      // Optionally add the returned medicine to the medicines array
+      setMedicines(prev => [...prev, response.data]);
+      return response.data;  // Return the created medicine (including its ID)
     } catch (error) {
-      console.error('Error adding medicine:', error);
+      console.error('Error creating medicine:', error);
+      return null;
+    }
+  };
+
+  // Call this on the second screen to update additional details
+  const updateMedicineDetails = async (medicineId, details) => {
+    try {
+      const accessToken = await AsyncStorage.getItem('access_token');
+      const response = await api.post(`/medications/schedules/${medicineId}/`, details, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+      // Update state: replace the matched record with the updated response
+      setMedicines(prev =>
+        prev.map(med => (med.id === medicineId ? response.data : med))
+      );
+      // Optionally schedule updated notification if needed
+      scheduleNotification(response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error updating medicine details:', error);
+      return null;
     }
   };
 
   const setupNotifications = async () => {
     const { status } = await Notifications.requestPermissionsAsync();
     if (status !== 'granted') return;
-
     Notifications.setNotificationHandler({
       handleNotification: async () => ({
         shouldShowAlert: true,
@@ -48,7 +75,6 @@ export const MedicineProvider = ({ children }) => {
 
   const scheduleNotification = async (medicine) => {
     const triggerTime = new Date(medicine.time);
-
     await Notifications.scheduleNotificationAsync({
       content: {
         title: "Time to take your medicine!",
@@ -64,7 +90,7 @@ export const MedicineProvider = ({ children }) => {
   };
 
   return (
-    <MedicineContext.Provider value={{ medicines, addMedicine }}>
+    <MedicineContext.Provider value={{ medicines, createMedicinePartial, updateMedicineDetails }}>
       {children}
     </MedicineContext.Provider>
   );
