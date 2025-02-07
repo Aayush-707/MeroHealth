@@ -71,15 +71,12 @@ useEffect(() => {
           
           <Title style={styles.sectionTitle}>Medication Details</Title>
           <Paragraph>Instructions: {medication.instructions}</Paragraph>
-          <Paragraph>Created: {new Date(medication.created_at).toLocaleDateString()}</Paragraph>
 
           <Title style={styles.sectionTitle}>Schedule Details</Title>
           <Paragraph>Dosage: {schedule.dosage}</Paragraph>
           <Paragraph>Frequency: {schedule.frequency}</Paragraph>
           <Paragraph>Timing: {schedule.timing}</Paragraph>
           <Paragraph>Time: {formatTime(schedule.time)}</Paragraph>
-          <Paragraph>Status: {schedule.is_active ? 'Active' : 'Inactive'}</Paragraph>
-          <Paragraph>Expires: {new Date(schedule.expires_at).toLocaleDateString()}</Paragraph>
         </Card.Content>
       </Card>
     </ScrollView>

@@ -42,10 +42,6 @@ export default function HomeScreen({ navigation }) {
                 <Title style={styles.medicineTitle}>
                   {item.medication_details?.name || 'Unknown Medicine'}
                 </Title>
-                <Paragraph>Dosage: {item.dosage}</Paragraph>
-                <Paragraph>Time: {formatTime(item.time)}</Paragraph>
-                <Paragraph>Frequency: {item.frequency}</Paragraph>
-                <Paragraph>Timing: {item.timing}</Paragraph>
                 {item.medication_details?.instructions && (
                   <Paragraph style={styles.instructions}>
                     Instructions: {item.medication_details.instructions}
