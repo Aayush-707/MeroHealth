@@ -38,12 +38,22 @@ const AddMedicineScreen = ({ navigation }) => {
         setStep(2);
       }
     } else {
+      // Format time in HH:mm:ss format for backend
+      const formattedTime = medicine.time instanceof Date 
+      ? medicine.time.toLocaleTimeString('en-US', {
+          hour12: false,
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        })
+      : medicine.time;
+
       // Prepare the additional details for update
       const updateData = {
         dosage: medicine.dosage,
         frequency: medicine.frequency,
         timing: medicine.timing,
-        time: medicine.time,
+        time: formattedTime,
       };
       await updateMedicineDetails(medicineId, updateData);
       navigation.goBack();
@@ -139,30 +149,26 @@ const AddMedicineScreen = ({ navigation }) => {
             onPress={() => setVisible(true)}
             style={styles.timeButton}
           >
-            {typeof medicine.time === "string"
-              ? medicine.time
-              : ("0" + medicine.time.getHours()).slice(-2) +
-                ":" +
-                ("0" + medicine.time.getMinutes()).slice(-2)}
+            {medicine.time instanceof Date 
+              ? medicine.time.toLocaleTimeString([], { 
+                  hour: '2-digit', 
+                  minute: '2-digit',
+                  hour12: true 
+                })
+              : 'Select Time'}
           </Button>
 
           {visible && (
             <DateTimePicker
-              value={
-                typeof medicine.time === "string"
-                  ? new Date("1970-01-01T" + medicine.time + "Z")
-                  : medicine.time
-              }
+              value={typeof medicine.time === 'string' 
+                ? new Date(`1970-01-01T${medicine.time}`) 
+                : medicine.time}
               mode="time"
               display="spinner"
               onChange={(event, selectedTime) => {
                 setVisible(false);
                 if (selectedTime) {
-                  const pad = (n) => n.toString().padStart(2, "0");
-                  const formattedTime = `${pad(selectedTime.getHours())}:${pad(
-                    selectedTime.getMinutes()
-                  )}`;
-                  setMedicine({ ...medicine, time: formattedTime });
+                  setMedicine({ ...medicine, time: selectedTime });
                 }
               }}
             />

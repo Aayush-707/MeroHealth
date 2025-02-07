@@ -64,6 +64,7 @@ export const MedicineProvider = ({ children }) => {
       //   • user_id (if necessary) and optional expires_at.
       const scheduleData = {
         medication: medicineId,
+        medication_id: medicineId,
         dosage: details.dosage,
         frequency: details.frequency,
         timing: details.timing,

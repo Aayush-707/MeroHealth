@@ -7,6 +7,16 @@ import { UserContext } from '../context/UserContext';
 export default function HomeScreen({ navigation }) {
   const { medicines } = useContext(MedicineContext);
   const { role } = useContext(UserContext);
+
+  const formatTime = (timeString) => {
+    if (!timeString) return 'No time set';
+    try {
+      const [hours, minutes] = timeString.split(':');
+      return `${hours}:${minutes}`;
+    } catch (error) {
+      return timeString;
+    }
+  };
   
   return (
     <View style={styles.container}>
@@ -29,10 +39,16 @@ export default function HomeScreen({ navigation }) {
               }
             >
               <Card.Content>
-                <Title style={styles.medicineTitle}>{item.name}</Title>
-                {item.instructions && (
+                <Title style={styles.medicineTitle}>
+                  {item.medication_details?.name || 'Unknown Medicine'}
+                </Title>
+                <Paragraph>Dosage: {item.dosage}</Paragraph>
+                <Paragraph>Time: {formatTime(item.time)}</Paragraph>
+                <Paragraph>Frequency: {item.frequency}</Paragraph>
+                <Paragraph>Timing: {item.timing}</Paragraph>
+                {item.medication_details?.instructions && (
                   <Paragraph style={styles.instructions}>
-                    Instructions: {item.instructions}
+                    Instructions: {item.medication_details.instructions}
                   </Paragraph>
                 )}
               </Card.Content>
