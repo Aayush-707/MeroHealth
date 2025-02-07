@@ -90,7 +90,7 @@ export const MedicineProvider = ({ children }) => {
       const exists = prev.find(med => med.id === medicineId);
       if (exists) {
         return prev.map(med =>
-          med.id === medicineId ? mergedMedicine : med
+          (med.id === medicineId ? mergedMedicine : med)
         );
       } else {
         return [...prev, mergedMedicine];
