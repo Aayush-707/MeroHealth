@@ -22,39 +22,14 @@ export default function HomeScreen({ navigation }) {
           }
           contentContainerStyle={styles.listContent}
           renderItem={({ item }) => (
-            <Card style={styles.card}
-            onPress={() => navigation.navigate('MedicationDetail', { 
-              medicationId: item.id 
-            })}>
+            <Card
+              style={styles.card}
+              onPress={() =>
+                navigation.navigate("MedicationDetail", { medicationId: item.id })
+              }
+            >
               <Card.Content>
                 <Title style={styles.medicineTitle}>{item.name}</Title>
-
-                <View style={styles.detailRow}>
-                  <Paragraph style={styles.detailLabel}>Dosage:</Paragraph>
-                  <Paragraph style={styles.detailValue}>
-                    {item.dosage}
-                  </Paragraph>
-                </View>
-
-                <View style={styles.detailRow}>
-                  <Paragraph style={styles.detailLabel}>Frequency:</Paragraph>
-                  <Paragraph style={styles.detailValue}>
-                    {item.frequency}
-                  </Paragraph>
-                </View>
-
-                <View style={styles.detailRow}>
-                  <Paragraph style={styles.detailValue}>
-                    {item.time
-                      ? new 
-                      Date(item.time).toLocaleTimeString([], {
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })
-                      : "No time available"}
-                  </Paragraph>
-                </View>
-
                 {item.instructions && (
                   <Paragraph style={styles.instructions}>
                     Instructions: {item.instructions}
@@ -65,7 +40,6 @@ export default function HomeScreen({ navigation }) {
           )}
         />
       )}
-
       {role === "PATIENT" && (
         <FAB
           style={styles.fab}
@@ -81,7 +55,7 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: "#f8f9fa",
   },
   listContent: {
     paddingHorizontal: 16,
@@ -91,54 +65,35 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     borderRadius: 12,
     elevation: 2,
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   medicineTitle: {
     fontSize: 20,
-    fontWeight: '600',
-    color: '#1a237e',
+    fontWeight: "600",
+    color: "#1a237e",
     marginBottom: 12,
   },
-  detailRow: {
-    flexDirection: 'row',
-    marginBottom: 8,
-    alignItems: 'baseline',
-  },
-  detailLabel: {
-    fontSize: 14,
-    color: '#616161',
-    width: 90,
-    fontWeight: '500',
-  },
-  detailValue: {
-    fontSize: 14,
-    color: '#212121',
-    flex: 1,
-  },
   instructions: {
-    marginTop: 12,
-    fontSize: 13,
-    color: '#616161',
-    lineHeight: 20,
-    fontStyle: 'italic',
+    fontSize: 14,
+    color: "#212121",
   },
   fab: {
-    position: 'absolute',
+    position: "absolute",
     margin: 24,
     right: 0,
     bottom: 0,
-    backgroundColor: '#1e90ff',
+    backgroundColor: "#1e90ff",
     borderRadius: 28,
     elevation: 4,
   },
   emptyContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   emptyText: {
     fontSize: 16,
-    color: '#616161',
-    fontStyle: 'italic',
+    color: "#616161",
+    fontStyle: "italic",
   },
 });

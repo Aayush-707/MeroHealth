@@ -1,9 +1,9 @@
-import React, { useState, useContext } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Button, TextInput, Title } from 'react-native-paper';
-import DateTimePicker from '@react-native-community/datetimepicker';
-import { MedicineContext } from '../context/MedicineContext';
-import { Picker } from '@react-native-picker/picker';
+import React, { useState, useContext } from "react";
+import { View, StyleSheet } from "react-native";
+import { Button, TextInput, Title } from "react-native-paper";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { MedicineContext } from "../context/MedicineContext";
+import { Picker } from "@react-native-picker/picker";
 
 const AddMedicineScreen = ({ navigation }) => {
   const [step, setStep] = useState(1);
@@ -11,18 +11,19 @@ const AddMedicineScreen = ({ navigation }) => {
   const [visible, setVisible] = useState(false);
   // To hold the medicine state including its ID (if created)
   const [medicine, setMedicine] = useState({
-    name: '',
-    instructions: '',
-    dosage: '',
-    frequency: '',
-    timing: '',
+    name: "",
+    instructions: "",
+    dosage: "",
+    frequency: "",
+    timing: "",
     time: new Date(),
   });
-  
+
   // To save the medicine record returned from the backend after step 1
   const [medicineId, setMedicineId] = useState(null);
 
-  const { createMedicinePartial, updateMedicineDetails } = useContext(MedicineContext);
+  const { createMedicinePartial, updateMedicineDetails } =
+    useContext(MedicineContext);
 
   const handleNextStep = async () => {
     if (step === 1) {
@@ -54,11 +55,11 @@ const AddMedicineScreen = ({ navigation }) => {
       {step === 1 ? (
         <>
           <Title style={styles.title}>Medication</Title>
-          
+
           <TextInput
             label="Medicine Name"
             value={medicine.name}
-            onChangeText={text => setMedicine({ ...medicine, name: text })}
+            onChangeText={(text) => setMedicine({ ...medicine, name: text })}
             style={styles.input}
             mode="outlined"
             theme={{ roundness: 20 }}
@@ -67,15 +68,17 @@ const AddMedicineScreen = ({ navigation }) => {
           <TextInput
             label="Instructions"
             value={medicine.instructions}
-            onChangeText={text => setMedicine({ ...medicine, instructions: text })}
+            onChangeText={(text) =>
+              setMedicine({ ...medicine, instructions: text })
+            }
             style={styles.input}
             multiline
             mode="outlined"
             theme={{ roundness: 20 }}
           />
 
-          <Button 
-            mode="contained" 
+          <Button
+            mode="contained"
             onPress={handleNextStep}
             style={styles.button}
           >
@@ -89,68 +92,84 @@ const AddMedicineScreen = ({ navigation }) => {
           <View style={styles.pickerContainer}>
             <Picker
               selectedValue={medicine.frequency}
-              onValueChange={(itemValue) => setMedicine({ ...medicine, frequency: itemValue })}
+              onValueChange={(itemValue) =>
+                setMedicine({ ...medicine, frequency: itemValue })
+              }
               style={styles.picker}
               mode="outlined"
-               theme={{ roundness: 20 }}
+              theme={{ roundness: 20 }}
             >
-             <Picker.Item label="Select Frequency" value="" />
-             <Picker.Item label="Daily" value="DAILY" />
-             <Picker.Item label="Weekly" value="WEEKLY" />
-             <Picker.Item label="Monthly" value="MONTHLY" />
-             <Picker.Item label="As Needed" value="AS_NEEDED" />
-             </Picker>
-           </View>
+              <Picker.Item label="Select Frequency" value="" />
+              <Picker.Item label="Daily" value="DAILY" />
+              <Picker.Item label="Weekly" value="WEEKLY" />
+              <Picker.Item label="Monthly" value="MONTHLY" />
+              <Picker.Item label="As Needed" value="AS_NEEDED" />
+            </Picker>
+          </View>
 
-           <View style={styles.pickerContainer}>
+          <View style={styles.pickerContainer}>
             <Picker
               selectedValue={medicine.timing}
-              onValueChange={(itemValue) => setMedicine({ ...medicine, timing: itemValue })}
+              onValueChange={(itemValue) =>
+                setMedicine({ ...medicine, timing: itemValue })
+              }
               style={styles.picker}
               mode="outlined"
-               theme={{ roundness: 20 }}
+              theme={{ roundness: 20 }}
             >
-             <Picker.Item label="Select Timing" value="" />
-             <Picker.Item label="Before Meal" value="BEFORE_MEAL" />
-             <Picker.Item label="After Meal" value="AFTER_MEAL" />
-             <Picker.Item label="With Meal" value="WITH_MEAL" />
-             <Picker.Item label="Any Time" value="ANY_TIME" />
-             </Picker>
-           </View>
+              <Picker.Item label="Select Timing" value="" />
+              <Picker.Item label="Before Meal" value="BEFORE_MEAL" />
+              <Picker.Item label="After Meal" value="AFTER_MEAL" />
+              <Picker.Item label="With Meal" value="WITH_MEAL" />
+              <Picker.Item label="Any Time" value="ANY_TIME" />
+            </Picker>
+          </View>
 
           <TextInput
             label="Dosage"
             value={medicine.dosage}
-            onChangeText={text => setMedicine({ ...medicine, dosage: text })}
+            onChangeText={(text) => setMedicine({ ...medicine, dosage: text })}
             style={styles.input}
             mode="outlined"
             theme={{ roundness: 20 }}
           />
-          
-          <Button 
-            mode="outlined" 
+
+          <Button
+            mode="outlined"
             onPress={() => setVisible(true)}
             style={styles.timeButton}
           >
-            {medicine.time.toLocaleTimeString()}
+            {typeof medicine.time === "string"
+              ? medicine.time
+              : ("0" + medicine.time.getHours()).slice(-2) +
+                ":" +
+                ("0" + medicine.time.getMinutes()).slice(-2)}
           </Button>
 
           {visible && (
             <DateTimePicker
-              value={medicine.time}
+              value={
+                typeof medicine.time === "string"
+                  ? new Date("1970-01-01T" + medicine.time + "Z")
+                  : medicine.time
+              }
               mode="time"
               display="spinner"
               onChange={(event, selectedTime) => {
                 setVisible(false);
                 if (selectedTime) {
-                  setMedicine({ ...medicine, time: selectedTime });
+                  const pad = (n) => n.toString().padStart(2, "0");
+                  const formattedTime = `${pad(selectedTime.getHours())}:${pad(
+                    selectedTime.getMinutes()
+                  )}`;
+                  setMedicine({ ...medicine, time: formattedTime });
                 }
               }}
             />
           )}
 
-          <Button 
-            mode="contained" 
+          <Button
+            mode="contained"
             onPress={handleNextStep}
             style={styles.button}
           >
@@ -170,21 +189,21 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     marginBottom: 20,
-    textAlign: 'center',
+    textAlign: "center",
   },
   input: {
     marginBottom: 15,
   },
   pickerContainer: {
     borderWidth: 1,
-    borderColor: '#808080',
+    borderColor: "#808080",
     borderRadius: 20,
     marginBottom: 15,
-    overflow: 'hidden',
+    overflow: "hidden",
   },
   picker: {
     height: 52,
-    width: '100%',
+    width: "100%",
   },
   timeButton: {
     marginVertical: 15,
