@@ -11,24 +11,50 @@ export default function MedicationDetailScreen({ route, navigation }) {
 
   useEffect(() => {
     fetchMedicationDetails();
-    fetchScheduleDetails();
   }, [medicationId]);
 
+  // MedicationDetailScreen.js
   const fetchMedicationDetails = async () => {
     try {
-      const response = await api.get(`/medications/${medicationId}/`);
-      setMedication(response.data);
+      // First fetch the schedule details since it contains medication_details
+      const scheduleResponse = await api.get(`/medications/schedules/${medicationId}/`);
+      setSchedule(scheduleResponse.data);
+      
+      // Get medication details from the schedule's medication_details
+      if (scheduleResponse.data.medication_details) {
+        setMedication(scheduleResponse.data.medication_details);
+      } else {
+        // Fallback to fetching medication directly if needed
+        const medicationResponse = await api.get(`/medications/${scheduleResponse.data.medication_id}/`);
+        setMedication(medicationResponse.data);
+      }
     } catch (error) {
-      console.error('Error fetching medication details:', error);
+      console.error('Error fetching details:', error);
     }
   };
 
-  const fetchScheduleDetails = async () => {
+// Remove separate fetchScheduleDetails function and just use one combined fetch
+useEffect(() => {
+  fetchMedicationDetails();
+}, [medicationId]);
+
+
+  const formatTime = (timeString) => {
+    if (!timeString) return 'Time not set';
     try {
-      const response = await api.get(`/medications/schedules/${medicationId}/`);
-      setSchedule(response.data);
+      // Handle time string from Django (HH:mm:ss format)
+      const [hours, minutes] = timeString.split(':');
+      const date = new Date();
+      date.setHours(parseInt(hours, 10));
+      date.setMinutes(parseInt(minutes, 10));
+      return date.toLocaleTimeString([], { 
+        hour: '2-digit', 
+        minute: '2-digit',
+        hour12: true 
+      });
     } catch (error) {
-      console.error('Error fetching schedule details:', error);
+      console.error('Error formatting time:', error);
+      return timeString;
     }
   };
 
@@ -51,7 +77,7 @@ export default function MedicationDetailScreen({ route, navigation }) {
           <Paragraph>Dosage: {schedule.dosage}</Paragraph>
           <Paragraph>Frequency: {schedule.frequency}</Paragraph>
           <Paragraph>Timing: {schedule.timing}</Paragraph>
-          <Paragraph>Time: {new Date(schedule.time).toLocaleTimeString()}</Paragraph>
+          <Paragraph>Time: {formatTime(schedule.time)}</Paragraph>
           <Paragraph>Status: {schedule.is_active ? 'Active' : 'Inactive'}</Paragraph>
           <Paragraph>Expires: {new Date(schedule.expires_at).toLocaleDateString()}</Paragraph>
         </Card.Content>
