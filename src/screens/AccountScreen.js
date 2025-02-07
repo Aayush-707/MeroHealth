@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import { List, Button } from 'react-native-paper';
 import { UserContext } from '../context/UserContext';
 
-export default function AccountScreen({ navigation }) {
+export default function AccountScreen({ }) {
   const { user, logout } = useContext(UserContext);
 
   const handleLogout = () => {
