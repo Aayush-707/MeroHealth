@@ -9,10 +9,22 @@ export const MedicineProvider = ({ children }) => {
   const [medicines, setMedicines] = useState([]);
 
   useEffect(() => {
+    refreshMedicines();
     loadMedicines();
     setupNotifications();
   }, []);
 
+  //refresh function
+  const refreshMedicines = async () => {
+    try {
+      console.log('Fetching medicines...'); // Debug log
+      const response = await api.get('/medications/schedules/');
+      setMedicines(response.data);
+    } catch (error) {
+      console.error('Error refreshing medicines:', error.response?.data || error);
+    }
+  };
+  
   const loadMedicines = async () => {
     try {
       const accessToken = await AsyncStorage.getItem('access_token');
@@ -26,97 +38,153 @@ export const MedicineProvider = ({ children }) => {
     }
   };
 
-  // Updated function: Create a medication with initial details according to the backend
-  const createMedicinePartial = async (partialMedicine) => {
+  // function to create medicaiton with schedule
+  const createMedicationWithSchedule = async (medicationData) => {
     try {
-      const accessToken = await AsyncStorage.getItem('access_token');
-      // Optionally, if your backend requires a user ID, you can retrieve it (example below)
-      // const userId = await AsyncStorage.getItem('user_id');
-      // Build the payload with the required keys. The backend expects:
-      //   • name (string)
-      //   • instructions (string)
-      //   • (optionally) user or user_id, if required.
-      const payload = {
-        name: partialMedicine.name,
-        instructions: partialMedicine.instructions,
-        // Uncomment the line below if needed:
-        // user: userId,
-      };
-      const response = await api.post('/medications/', payload, {
-        headers: { Authorization: `Bearer ${accessToken}` },
+      const response = await api.post('/medications/create-with-schedule/', {
+        name: medicationData.name,
+        instructions: medicationData.instructions,
+        dosage: medicationData.dosage,
+        time: medicationData.time,
+        frequency: medicationData.frequency,
+        timing: medicationData.timing,
+        expires_at: new Date(Date.now() + 30*24*60*60*1000).toISOString() // 30 days from now
       });
-      // Do not update the medicines list here since the schedule details (dosage, etc.) are not yet set.
-      // Just return the created medication data (which includes its id) for later use.
+      
+      await refreshMedicines();
       return response.data;
     } catch (error) {
-      console.error('Error creating medication partial:', error.response?.data || error.message);
+      console.error('Error creating medication:', error.response?.data || error.message);
       return null;
     }
   };
 
-  // Second screen: Update medication schedule details using the backend inputs
-  const updateMedicineDetails = async (medicineId, details) => {
-    try {
-      const accessToken = await AsyncStorage.getItem('access_token');
-      // Build the payload according to the backend requirements:
-      //   • medication: medication identifier (required by your backend)
-      //   • dosage, frequency, timing, time (formatted as "HH:MM:SS")
-      //   • user_id (if necessary) and optional expires_at.
-      const scheduleData = {
-        medication: medicineId,
-        medication_id: medicineId,
-        dosage: details.dosage,
-        frequency: details.frequency,
-        timing: details.timing,
-        time: details.time,
-        user_id: details.user_id, // Include only if required by your backend.
-        expires_at: details.expires_at || null,
-      };
+// Remove or deprecate createMedicinePartial and updateMedicineDetails
 
-      const response = await api.post('/medications/schedules/', scheduleData, {
-        headers: { Authorization: `Bearer ${accessToken}` },
+
+  // // Updated function: Create a medication with initial details according to the backend
+  // const createMedicinePartial = async (partialMedicine) => {
+  //   try {
+  //     const accessToken = await AsyncStorage.getItem('access_token');
+  //     // Optionally, if your backend requires a user ID, you can retrieve it (example below)
+  //     // const userId = await AsyncStorage.getItem('user_id');
+  //     // Build the payload with the required keys. The backend expects:
+  //     //   • name (string)
+  //     //   • instructions (string)
+  //     //   • (optionally) user or user_id, if required.
+  //     const payload = {
+  //       name: partialMedicine.name,
+  //       instructions: partialMedicine.instructions,
+  //       // Uncomment the line below if needed:
+  //       // user: userId,
+  //     };
+  //     const response = await api.post('/medications/', payload, {
+  //       headers: { Authorization: `Bearer ${accessToken}` },
+  //     });
+  //     // Do not update the medicines list here since the schedule details (dosage, etc.) are not yet set.
+  //     // Just return the created medication data (which includes its id) for later use.
+  //     return response.data;
+  //   } catch (error) {
+  //     console.error('Error creating medication partial:', error.response?.data || error.message);
+  //     return null;
+  //   }
+  // };
+
+  // // Second screen: Update medication schedule details using the backend inputs
+  // const updateMedicineDetails = async (medicineId, details) => {
+  //   try {
+  //     const accessToken = await AsyncStorage.getItem('access_token');
+  //     // Build the payload according to the backend requirements:
+  //     //   • medication: medication identifier (required by your backend)
+  //     //   • dosage, frequency, timing, time (formatted as "HH:MM:SS")
+  //     //   • user_id (if necessary) and optional expires_at.
+  //     const scheduleData = {
+  //       medication: medicineId,
+  //       medication_id: medicineId,
+  //       dosage: details.dosage,
+  //       frequency: details.frequency,
+  //       timing: details.timing,
+  //       time: details.time,
+  //       user_id: details.user_id, // Include only if required by your backend.
+  //       expires_at: details.expires_at || null,
+  //     };
+
+  //     const response = await api.post('/medications/schedules/', scheduleData, {
+  //       headers: { Authorization: `Bearer ${accessToken}` },
+  //     });
+
+  //   // Merge the schedule response with the original medication details.
+  //   // Option A: If you already stored the partial medication data locally (e.g. in a variable called 'partialData'),
+  //   // you can merge it:
+  //   const mergedMedicine = {
+  //     ...details.partialData,      // Assume you passed the original partial details in `details.partialData`
+  //     ...response.data,            // Merge schedule details.
+  //   };
+
+  //   // Update the local medicines state.
+  //   setMedicines(prev => {
+  //     const exists = prev.find(med => med.id === medicineId);
+  //     if (exists) {
+  //       return prev.map(med =>
+  //         med.id === medicineId ? mergedMedicine : med
+  //       );
+  //     } else {
+  //       return [...prev, mergedMedicine];
+  //     }
+  //   });
+
+  //   // Optionally, schedule a notification.
+
+  //     scheduleNotification(response.data);
+  //     return response.data;
+  //   } catch (error) {
+  //     console.error('Error updating medicine details:', error.response?.data || error.message);
+  //     return null;
+  //   }
+  // };
+
+  // handleUpdate function for editing medications
+  const handleUpdate = async (medicationId, updateData) => {
+    try {
+      // First update medication details
+      await api.put(`/medications/${medicationId}/`, {
+        name: updateData.name,
+        instructions: updateData.instructions
       });
 
-    // Merge the schedule response with the original medication details.
-    // Option A: If you already stored the partial medication data locally (e.g. in a variable called 'partialData'),
-    // you can merge it:
-    const mergedMedicine = {
-      ...details.partialData,      // Assume you passed the original partial details in `details.partialData`
-      ...response.data,            // Merge schedule details.
-    };
+      // Then update schedule details
+      await api.put(`/medications/schedules/${medicationId}/`, {
+        medication: medicationId,
+        dosage: updateData.dosage,
+        time: updateData.time,
+        frequency: updateData.frequency,
+        timing: updateData.timing
+      });
 
-    // Update the local medicines state.
-    setMedicines(prev => {
-      const exists = prev.find(med => med.id === medicineId);
-      if (exists) {
-        return prev.map(med =>
-          med.id === medicineId ? mergedMedicine : med
-        );
-      } else {
-        return [...prev, mergedMedicine];
-      }
-    });
-
-    // Optionally, schedule a notification.
-
-      scheduleNotification(response.data);
-      return response.data;
+      // Refresh medicines list after update
+      await refreshMedicines();
+      return true;
     } catch (error) {
-      console.error('Error updating medicine details:', error.response?.data || error.message);
-      return null;
+      console.error('Error updating medicine:', error);
+      return false;
     }
   };
+
 
   // Delete a medication record by its ID
-  const deleteMedicine = async (medicineId) => {
+  const deleteMedicine = async (medicationId) => {
     try {
-      const accessToken = await AsyncStorage.getItem('access_token');
-      await api.delete(`/medications/${medicineId}/`, {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      });
-      setMedicines(prev => prev.filter(med => med.id !== medicineId));
+      // Delete schedule first
+      await api.delete(`/medications/schedules/${medicationId}/`);
+      // Then delete medication
+      await api.delete(`/medications/${medicationId}/`);
+      
+      // Refresh medicines list after deletion
+      await refreshMedicines();
+      return true;
     } catch (error) {
       console.error('Error deleting medicine:', error);
+      return false;
     }
   };
 
@@ -175,11 +243,12 @@ export const MedicineProvider = ({ children }) => {
     <MedicineContext.Provider
       value={{
         medicines,
-        createMedicinePartial,
-        updateMedicineDetails,
+        createMedicationWithSchedule,
         deleteMedicine,
         getMedicationDetails,
         getScheduleDetails,
+        refreshMedicines,
+        handleUpdate
       }}
     >
       {children}

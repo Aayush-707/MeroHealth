@@ -6,6 +6,8 @@ import UpdateScreen from '../screens/UpdateScreen';
 import AccountScreen from '../screens/AccountScreen';
 import AddMedicineScreen from '../screens/AddMedicineScreen';
 import MedicationDetailScreen from '../screens/MedicationDetailScreen'
+import EditMedicineScreen from '../screens/EditMedicineScreen';
+
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
@@ -67,6 +69,28 @@ function HomeStackScreen() {
         name="MedicationDetail"
         component={MedicationDetailScreen}
         options={{ title: 'Medication Details' }}
+      />
+
+      <HomeStack.Screen
+        name="EditMedicine"
+        component={EditMedicineScreen}
+        options={{ 
+          title: 'Edit Medicine',
+          headerBackTitleVisible: false,
+          headerBackImage: () => (
+            <MaterialIcons 
+              name="chevron-left" 
+              size={28} 
+              color="#fff" 
+              style={{ 
+                marginLeft: 14,
+                backgroundColor: '#ffffff20',
+                borderRadius: 20,
+                padding: 4,
+              }}
+            />
+          )
+        }}
       />
     </HomeStack.Navigator>
   );

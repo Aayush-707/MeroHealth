@@ -1,43 +1,98 @@
-// src/screens/MedicationDetailScreen.js
-import React, { useEffect, useState } from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native';
-import { Card, Title, Paragraph, Button, Divider } from 'react-native-paper';
+import React, { useState, useContext } from 'react';
+import { View, ScrollView, StyleSheet, Alert } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
+import { Card, Title, Paragraph, Button, Divider, IconButton } from 'react-native-paper';
+import { MedicineContext } from '../context/MedicineContext';
 import api from '../services/api';
 
 export default function MedicationDetailScreen({ route, navigation }) {
   const { medicationId } = route.params;
   const [medication, setMedication] = useState(null);
   const [schedule, setSchedule] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const { deleteMedicine, refreshMedicines } = useContext(MedicineContext);
 
-  useEffect(() => {
-    fetchMedicationDetails();
-  }, [medicationId]);
+  // Use useFocusEffect instead of useEffect for better screen focus handling
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchMedicationDetails();
+    }, [medicationId])
+  );
 
-  // MedicationDetailScreen.js
   const fetchMedicationDetails = async () => {
     try {
-      // First fetch the schedule details since it contains medication_details
+      setIsLoading(true);
       const scheduleResponse = await api.get(`/medications/schedules/${medicationId}/`);
       setSchedule(scheduleResponse.data);
       
-      // Get medication details from the schedule's medication_details
       if (scheduleResponse.data.medication_details) {
         setMedication(scheduleResponse.data.medication_details);
-      } else {
-        // Fallback to fetching medication directly if needed
-        const medicationResponse = await api.get(`/medications/${scheduleResponse.data.medication_id}/`);
-        setMedication(medicationResponse.data);
       }
     } catch (error) {
       console.error('Error fetching details:', error);
+      Alert.alert('Error', 'Failed to load medication details');
+    } finally {
+      setIsLoading(false);
     }
   };
 
-// Remove separate fetchScheduleDetails function and just use one combined fetch
-useEffect(() => {
-  fetchMedicationDetails();
-}, [medicationId]);
+  const handleEdit = () => {
+    if (!schedule?.medication_details) {
+      Alert.alert('Error', 'Unable to edit medication. Details not found.');
+      return;
+    }
 
+    navigation.navigate('EditMedicine', {
+      medicationId: schedule.id,
+      medication: schedule.medication_details,
+      schedule: schedule
+    });
+  };
+
+  const handleDelete = () => {
+    Alert.alert(
+      "Delete Medication",
+      "Are you sure you want to delete this medication?",
+      [
+        { text: "Cancel", style: "cancel" },
+        { 
+          text: "Delete", 
+          style: "destructive",
+          onPress: confirmDelete 
+        }
+      ]
+    );
+  };
+
+  const confirmDelete = async () => {
+    try {
+      if (!medication?.id) {
+        throw new Error('Medication ID not found');
+      }
+
+      await api.delete(`/medications/${medication.id}/`);
+      await refreshMedicines();
+      Alert.alert("Success", "Medication deleted successfully");
+      navigation.goBack();
+    } catch (error) {
+      console.error('Error deleting medication:', error);
+      Alert.alert("Error", "Failed to delete medication");
+    }
+  };
+
+  if (isLoading) {
+    return <View style={styles.loading}><Title>Loading...</Title></View>;
+  }
+
+  if (!medication || !schedule) {
+    return (
+      <View style={styles.loading}>
+        <Title>No medication details found</Title>
+      </View>
+    );
+  }
+
+  // Rest of your render code remains the same...
 
   const formatTime = (timeString) => {
     if (!timeString) return 'Time not set';
@@ -58,15 +113,28 @@ useEffect(() => {
     }
   };
 
-  if (!medication || !schedule) {
-    return <View style={styles.loading}><Title>Loading...</Title></View>;
-  }
-
   return (
     <ScrollView style={styles.container}>
       <Card style={styles.card}>
         <Card.Content>
-          <Title style={styles.title}>{medication.name}</Title>
+        <View style={styles.headerContainer}>
+            <Title style={styles.title}>{medication.name}</Title>
+            <View style={styles.actionButtons}>
+              <IconButton
+                icon="pencil"
+                size={24}
+                onPress={handleEdit}
+                style={styles.editButton}
+              />
+              <IconButton
+                icon="delete"
+                size={24}
+                onPress={handleDelete}
+                style={styles.deleteButton}
+                color="red"
+              />
+            </View>
+          </View>
           <Divider style={styles.divider} />
           
           <Title style={styles.sectionTitle}>Medication Details</Title>
@@ -93,14 +161,24 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     elevation: 4,
   },
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   title: {
     fontSize: 24,
-    marginBottom: 8,
+    flex: 1,
   },
-  sectionTitle: {
-    fontSize: 18,
-    marginTop: 16,
-    marginBottom: 8,
+  actionButtons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  editButton: {
+    marginLeft: 8,
+  },
+  deleteButton: {
+    marginLeft: 8,
   },
   divider: {
     marginVertical: 16,

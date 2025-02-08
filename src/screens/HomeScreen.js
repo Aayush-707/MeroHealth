@@ -1,12 +1,36 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import { View, FlatList, StyleSheet, Text } from 'react-native';
 import { FAB, Card, Title, Paragraph } from 'react-native-paper';
 import { MedicineContext } from '../context/MedicineContext';
 import { UserContext } from '../context/UserContext';
 
 export default function HomeScreen({ navigation }) {
-  const { medicines } = useContext(MedicineContext);
+  const { medicines, refreshMedicines } = useContext(MedicineContext);
   const { role } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(true);
+
+  //effect to refresh medicines when screen comes to focus
+  useFocusEffect(
+    React.useCallback(() => {
+      const loadData = async () => {
+        setIsLoading(true);
+        await refreshMedicines();
+        setIsLoading(false);
+      };
+      loadData();
+    }, []) 
+  );
+  
+
+
+  if (isLoading) {
+    return (
+      <View style={styles.emptyContainer}>
+        <Text>Loading medications...</Text>
+      </View>
+    );
+  }
 
   const formatTime = (timeString) => {
     if (!timeString) return 'No time set';
