@@ -6,10 +6,7 @@ import { MedicineContext } from '../context/MedicineContext';
 import api from '../services/api';
 
 export default function MedicationDetailScreen({ route, navigation }) {
-  // Safely extract medicationId from route.params; provide fallback if undefined.
-  const { medicationId } = route?.params || {};
-  const { deleteMedicine } = useContext(MedicineContext);
-  
+  const { medicationId } = route.params;
   const [medication, setMedication] = useState(null);
   const [schedule, setSchedule] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -24,7 +21,7 @@ export default function MedicationDetailScreen({ route, navigation }) {
 
   const fetchMedicationDetails = async () => {
     try {
-      // First fetch the schedule details since it contains medication_details
+      setIsLoading(true);
       const scheduleResponse = await api.get(`/medications/schedules/${medicationId}/`);
       setSchedule(scheduleResponse.data);
       
@@ -100,6 +97,7 @@ export default function MedicationDetailScreen({ route, navigation }) {
   const formatTime = (timeString) => {
     if (!timeString) return 'Time not set';
     try {
+      // Handle time string from Django (HH:mm:ss format)
       const [hours, minutes] = timeString.split(':');
       const date = new Date();
       date.setHours(parseInt(hours, 10));
@@ -148,15 +146,6 @@ export default function MedicationDetailScreen({ route, navigation }) {
           <Paragraph>Timing: {schedule.timing}</Paragraph>
           <Paragraph>Time: {formatTime(schedule.time)}</Paragraph>
         </Card.Content>
-        <Card.Actions>
-          <Button 
-            mode="contained"
-            onPress={handleDelete}
-            style={styles.deleteButton}
-          >
-            Delete Medication
-          </Button>
-        </Card.Actions>
       </Card>
     </ScrollView>
   );
@@ -198,9 +187,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  deleteButton: {
-    backgroundColor: 'red',
-    marginTop: 16,
   },
 });
