@@ -41,8 +41,7 @@ const AddMedicineScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Title style={styles.title}>Add Medication</Title>
-
+      
       <TextInput
         label="Medicine Name"
         value={medicine.name}

@@ -11,7 +11,7 @@ export default function AccountScreen({ }) {
   };
 
   // Only show the following allowed fields.
-  const allowedFields = ["email", "name", "age", "gender", "role"];
+  const allowedFields = ["email", "name", "age", "gender",];
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -31,7 +31,6 @@ export default function AccountScreen({ }) {
                     key === "name" ? "account" :
                     key === "age" ? "numeric" :
                     key === "gender" ? "gender-male-female" :
-                    key === "role" ? "shield-account" :
                     "information"
                   }
                 />
