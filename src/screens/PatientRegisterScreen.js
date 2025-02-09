@@ -45,7 +45,8 @@ export default function PatientRegistration({ navigation }) {
         mode="outlined"
         outlineColor="#e0e0e0"
         activeOutlineColor="#1e90ff"
-        theme={{ roundness: 25 }}
+        textColor="black" // Ensure text input is black
+        theme={{ roundness: 20 }}
       />
 
       <TextInput
@@ -57,7 +58,8 @@ export default function PatientRegistration({ navigation }) {
         mode="outlined"
         outlineColor="#e0e0e0"
         activeOutlineColor="#1e90ff"
-        theme={{ roundness: 25 }}
+        textColor="black" // Ensure text input is black
+        theme={{ roundness: 20 }}
       />
 
       <TextInput
@@ -68,7 +70,8 @@ export default function PatientRegistration({ navigation }) {
         mode="outlined"
         outlineColor="#e0e0e0"
         activeOutlineColor="#1e90ff"
-        theme={{ roundness: 25 }}
+        textColor="black" // Ensure text input is black
+        theme={{ roundness: 20 }}
       />
 
       <TextInput
@@ -80,7 +83,8 @@ export default function PatientRegistration({ navigation }) {
         mode="outlined"
         outlineColor="#e0e0e0"
         activeOutlineColor="#1e90ff"
-        theme={{ roundness: 25 }}
+        textColor="black" // Ensure text input is black
+        theme={{ roundness: 20 }}
       />
 
       <TextInput
@@ -91,7 +95,8 @@ export default function PatientRegistration({ navigation }) {
         mode="outlined"
         outlineColor="#e0e0e0"
         activeOutlineColor="#1e90ff"
-        theme={{ roundness: 25 }}
+        textColor="black" // Ensure text input is black
+        theme={{ roundness: 20 }}
       />
 
       <Button 
@@ -115,24 +120,25 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
-    marginBottom: 20,  // Reduced from 30
-    color: '#1a237e',
+    marginBottom: 20,
+    color: 'black', // Changed title text color to black
     fontWeight: '700',
     textAlign: 'center',
   },
   input: {
-    marginBottom: 12,  // Reduced from 20
+    marginBottom: 12,
     backgroundColor: 'white',
   },
   button: {
-    marginTop: 20,     // Adjusted for new spacing
+    marginTop: 20,
     borderRadius: 25,
     paddingVertical: 5,
-    backgroundColor: '#1e90ff',
+    backgroundColor: '#1a237e', // Changed button color to match others
     elevation: 2,
   },
   buttonLabel: {
     fontSize: 16,
     fontWeight: '600',
+    color: 'white', // Ensure button text remains readable
   },
 });

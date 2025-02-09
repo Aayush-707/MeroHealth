@@ -144,7 +144,7 @@ export default function AppStackScreen() {
             />
           );
         },
-        tabBarActiveTintColor: '#1e90ff',
+        tabBarActiveTintColor: '#1a237e',
         tabBarInactiveTintColor: '#616161',
         tabBarStyle: {
           backgroundColor: '#fff',

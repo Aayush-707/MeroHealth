@@ -12,7 +12,7 @@ export default function CaregiverRegistration({ navigation }) {
 
   const handleRegister = async () => {
     try {
-      const response = await api.post('/users/register/', {
+      await api.post('/users/register/', {
         email,
         password,
         name,
@@ -45,7 +45,8 @@ export default function CaregiverRegistration({ navigation }) {
         mode="outlined"
         outlineColor="#e0e0e0"
         activeOutlineColor="#1e90ff"
-        theme={{ roundness: 25 }}
+        textColor="black"
+        theme={{ roundness: 20 }}
       />
 
       <TextInput
@@ -57,7 +58,8 @@ export default function CaregiverRegistration({ navigation }) {
         mode="outlined"
         outlineColor="#e0e0e0"
         activeOutlineColor="#1e90ff"
-        theme={{ roundness: 25 }}
+        textColor="black"
+        theme={{ roundness: 20 }}
       />
 
       <TextInput
@@ -68,7 +70,8 @@ export default function CaregiverRegistration({ navigation }) {
         mode="outlined"
         outlineColor="#e0e0e0"
         activeOutlineColor="#1e90ff"
-        theme={{ roundness: 25 }}
+        textColor="black"
+        theme={{ roundness: 20 }}
       />
 
       <TextInput
@@ -80,7 +83,8 @@ export default function CaregiverRegistration({ navigation }) {
         mode="outlined"
         outlineColor="#e0e0e0"
         activeOutlineColor="#1e90ff"
-        theme={{ roundness: 25 }}
+        textColor="black"
+        theme={{ roundness: 20 }}
       />
 
       <TextInput
@@ -91,7 +95,8 @@ export default function CaregiverRegistration({ navigation }) {
         mode="outlined"
         outlineColor="#e0e0e0"
         activeOutlineColor="#1e90ff"
-        theme={{ roundness: 25 }}
+        textColor="black"
+        theme={{ roundness: 20 }}
       />
 
       <Button 
@@ -116,7 +121,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     marginBottom: 20,
-    color: '#1a237e',
+    color: 'black',
     fontWeight: '700',
     textAlign: 'center',
   },
@@ -128,11 +133,12 @@ const styles = StyleSheet.create({
     marginTop: 20,
     borderRadius: 25,
     paddingVertical: 5,
-    backgroundColor: '#1e90ff',
+    backgroundColor: '#1a237e',
     elevation: 2,
   },
   buttonLabel: {
     fontSize: 16,
     fontWeight: '600',
+    color: 'white',
   },
 });

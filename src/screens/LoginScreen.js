@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { Button, TextInput, Text, Title } from 'react-native-paper';
 import { UserContext } from '../context/UserContext';
 
@@ -34,7 +34,8 @@ export default function LoginScreen({ navigation }) {
         mode="outlined"
         outlineColor="#e0e0e0"
         activeOutlineColor="#1e90ff"
-        theme={{ roundness: 25 }}
+        textColor="black"
+        theme={{ roundness: 20 }} // Text color changed to black
       />
 
       <TextInput
@@ -46,7 +47,8 @@ export default function LoginScreen({ navigation }) {
         mode="outlined"
         outlineColor="#e0e0e0"
         activeOutlineColor="#1e90ff"
-        theme={{ roundness: 25 }}
+        textColor="black"
+        theme={{ roundness: 20 }} // Text color changed to black
       />
 
       <Button 
@@ -59,7 +61,7 @@ export default function LoginScreen({ navigation }) {
       </Button>
 
       <View style={styles.registerContainer}>
-        <Text>Don't have an account? </Text>
+        <Text style={styles.registerTextLabel}>Don't have an account? </Text>
         <TouchableOpacity onPress={() => navigation.navigate('RoleSelection')}>
           <Text style={styles.registerText}>Register here</Text>
         </TouchableOpacity>
@@ -76,36 +78,43 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   header: {
-    marginBottom: 30,  // Reduced from 40
+    marginBottom: 30,
     alignItems: 'center',
-    marginTop: 40,     // Reduced from 50
+    marginTop: 40,
   },
   title: {
     fontSize: 32,
-    marginBottom: 8,   // Existing value kept
+    marginBottom: 8,
     color: '#1a237e',
     fontWeight: '700',
   },
   subtitle: {
     fontSize: 16,
-    color: '#424242',
+    color: '#000000',
     textAlign: 'center',
-    marginBottom: 8,   // Added for subtitle spacing
+    marginBottom: 8,
   },
   input: {
-    marginBottom: 12,  // Reduced from 20
+    marginBottom: 12,
     backgroundColor: 'white',
   },
   button: {
-    marginTop: 20,     // Increased from 15 to compensate
+    marginTop: 20,
     borderRadius: 25,
     paddingVertical: 5,
     elevation: 2,
+    backgroundColor: '#1a237e', // Changed button color
+  },
+  buttonLabel: {
+    color: 'white', // Ensuring the text remains readable
   },
   registerContainer: {
     flexDirection: 'row',
-    marginTop: 20,     // Reduced from 25
+    marginTop: 20,
     justifyContent: 'center',
+  },
+  registerTextLabel: {
+    color: 'black', // Changed "Don't have an account?" text color to black
   },
   registerText: {
     color: '#1e90ff',

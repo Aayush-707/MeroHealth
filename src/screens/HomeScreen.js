@@ -10,7 +10,6 @@ export default function HomeScreen({ navigation }) {
   const { role } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
 
-  //effect to refresh medicines when screen comes to focus
   useFocusEffect(
     React.useCallback(() => {
       const loadData = async () => {
@@ -19,10 +18,8 @@ export default function HomeScreen({ navigation }) {
         setIsLoading(false);
       };
       loadData();
-    }, []) 
+    }, [])
   );
-  
-
 
   if (isLoading) {
     return (
@@ -32,16 +29,6 @@ export default function HomeScreen({ navigation }) {
     );
   }
 
-  const formatTime = (timeString) => {
-    if (!timeString) return 'No time set';
-    try {
-      const [hours, minutes] = timeString.split(':');
-      return `${hours}:${minutes}`;
-    } catch (error) {
-      return timeString;
-    }
-  };
-  
   return (
     <View style={styles.container}>
       {medicines.length === 0 ? (
@@ -62,15 +49,17 @@ export default function HomeScreen({ navigation }) {
                 navigation.navigate("MedicationDetail", { medicationId: item.id })
               }
             >
-              <Card.Content>
-                <Title style={styles.medicineTitle}>
-                  {item.medication_details?.name || 'Unknown Medicine'}
-                </Title>
-                {item.medication_details?.instructions && (
-                  <Paragraph style={styles.instructions}>
-                    Instructions: {item.medication_details.instructions}
-                  </Paragraph>
-                )}
+              <Card.Content style={styles.cardContent}>
+                <View style={styles.textContainer}>
+                  <Title style={styles.medicineTitle}>
+                    {item.medication_details?.name || 'Unknown Medicine'}
+                  </Title>
+                  {item.medication_details?.instructions && (
+                    <Paragraph style={styles.instructions}>
+                      Instructions: {item.medication_details.instructions}
+                    </Paragraph>
+                  )}
+                </View>
               </Card.Content>
             </Card>
           )}
@@ -100,25 +89,38 @@ const styles = StyleSheet.create({
   card: {
     marginBottom: 16,
     borderRadius: 12,
-    elevation: 2,
+    elevation: 3,
     backgroundColor: "white",
+    padding: 12,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+  },
+  cardContent: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  textContainer: {
+    flex: 1,
   },
   medicineTitle: {
-    fontSize: 20,
-    fontWeight: "600",
-    color: "#1a237e",
-    marginBottom: 12,
+    fontSize: 22,
+    fontWeight: "700",
+    color: "black",
+    marginBottom: 6,
   },
   instructions: {
-    fontSize: 14,
-    color: "#212121",
+    fontSize: 16,
+    color: "#444",
+    fontWeight: "500",
   },
   fab: {
     position: "absolute",
     margin: 24,
     right: 0,
     bottom: 0,
-    backgroundColor: "#1e90ff",
+    backgroundColor: "#1a237e",
     borderRadius: 28,
     elevation: 4,
   },
