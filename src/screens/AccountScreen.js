@@ -10,11 +10,26 @@ export default function AccountScreen({ }) {
     logout();
   };
 
+  const handleLinkCaregiver = () => {
+    // Handle linking caregiver logic
+  };
+
   // Only show the following allowed fields.
-  const allowedFields = ["email", "name", "age", "gender",];
+  const allowedFields = ["email", "name", "age", "gender"];
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      {/* Link Caregiver Option */}
+      <List.Item
+        title="Link Caregiver Account"
+        description="Connect a caregiver to manage medications"
+        left={(props) => <List.Icon {...props} icon="account-heart" />}
+        style={styles.linkCaregiverItem}
+        titleStyle={styles.linkTitle}
+        descriptionStyle={styles.linkDescription}
+        onPress={handleLinkCaregiver}
+      />
+
       {user &&
         Object.entries(user)
           .filter(([key]) => allowedFields.includes(key))
@@ -27,11 +42,15 @@ export default function AccountScreen({ }) {
                 <List.Icon
                   {...props}
                   icon={
-                    key === "email" ? "email" :
-                    key === "name" ? "account" :
-                    key === "age" ? "numeric" :
-                    key === "gender" ? "gender-male-female" :
-                    "information"
+                    key === "email"
+                      ? "email"
+                      : key === "name"
+                      ? "account"
+                      : key === "age"
+                      ? "numeric"
+                      : key === "gender"
+                      ? "gender-male-female"
+                      : "information"
                   }
                 />
               )}
@@ -39,10 +58,10 @@ export default function AccountScreen({ }) {
               titleStyle={styles.listTitle}
               descriptionStyle={styles.listDescription}
             />
-          ))
-      }
-      <Button 
-        mode="contained" 
+          ))}
+
+      <Button
+        mode="contained"
         onPress={handleLogout}
         style={styles.logoutButton}
         labelStyle={styles.buttonLabel}
@@ -59,6 +78,20 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     padding: 20,
     backgroundColor: "#f8f9fa",
+  },
+  linkCaregiverItem: {
+    backgroundColor: "#e3f2fd",
+    marginBottom: 8,
+    borderRadius: 12,
+    elevation: 2,
+  },
+  linkTitle: {
+    color: "#1a237e",
+    fontWeight: "600",
+  },
+  linkDescription: {
+    color: "#616161",
+    fontSize: 14,
   },
   listItem: {
     backgroundColor: "white",
@@ -77,7 +110,7 @@ const styles = StyleSheet.create({
   logoutButton: {
     marginTop: 30,
     borderRadius: 25,
-    backgroundColor: "#1e90ff",
+    backgroundColor: "#1a237e",
     elevation: 2,
     paddingVertical: 8,
     marginHorizontal: 16,
@@ -88,3 +121,4 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
 });
+
