@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { View, StyleSheet, Alert, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Alert, Text, TouchableOpacity, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import { Picker } from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -55,110 +55,117 @@ export default function EditMedicineScreen({ route, navigation }) {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.formContainer}>
-        <TextInput
-          label="Medicine Name"
-          value={medicine.name}
-          onChangeText={(text) => setMedicine({ ...medicine, name: text })}
-          style={styles.input}
-          mode="outlined"
-          theme={{ roundness: 20, colors: { primary: '#007AFF' } }}
-          textColor="#000"
-        />
-
-        <TextInput
-          label="Instructions"
-          value={medicine.instructions}
-          onChangeText={(text) => setMedicine({ ...medicine, instructions: text })}
-          style={styles.input}
-          multiline
-          mode="outlined"
-          theme={{ roundness: 20, colors: { primary: '#007AFF' } }}
-          textColor="#000"
-        />
-
-        <View style={styles.pickerContainer}>
-          <Picker
-            selectedValue={medicine.frequency}
-            onValueChange={(itemValue) => setMedicine({ ...medicine, frequency: itemValue })}
-            style={styles.picker}
-            mode="dropdown"
-          >
-            <Picker.Item label="Select Frequency" value="" />
-            <Picker.Item label="Daily" value="DAILY" />
-            <Picker.Item label="Weekly" value="WEEKLY" />
-            <Picker.Item label="Monthly" value="MONTHLY" />
-            <Picker.Item label="As Needed" value="AS_NEEDED" />
-          </Picker>
-        </View>
-
-        <View style={styles.pickerContainer}>
-          <Picker
-            selectedValue={medicine.timing}
-            onValueChange={(itemValue) => setMedicine({ ...medicine, timing: itemValue })}
-            style={styles.picker}
-            mode="dropdown"
-          >
-            <Picker.Item label="Select Timing" value="" />
-            <Picker.Item label="Before Meal" value="BEFORE_MEAL" />
-            <Picker.Item label="After Meal" value="AFTER_MEAL" />
-            <Picker.Item label="With Meal" value="WITH_MEAL" />
-            <Picker.Item label="Any Time" value="ANY_TIME" />
-          </Picker>
-        </View>
-
-        <TextInput
-          label="Dosage"
-          value={medicine.dosage}
-          onChangeText={(text) => setMedicine({ ...medicine, dosage: text })}
-          style={styles.input}
-          mode="outlined"
-          theme={{ roundness: 20, colors: { primary: '#007AFF' } }}
-          textColor="#000"
-        />
-
-        <TouchableOpacity onPress={() => setVisible(true)} style={styles.timeButton}>
-          <Text style={styles.timeButtonText}>
-            {medicine.time instanceof Date
-              ? medicine.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })
-              : 'Select Time'}
-          </Text>
-        </TouchableOpacity>
-
-        {visible && (
-          <DateTimePicker
-            value={medicine.time instanceof Date ? medicine.time : new Date()}
-            mode="time"
-            display="spinner"
-            onChange={(event, selectedTime) => {
-              setVisible(false);
-              if (selectedTime) {
-                setMedicine({ ...medicine, time: selectedTime });
-              }
-            }}
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.container}
+    >
+      <ScrollView contentContainerStyle={styles.scrollContainer} keyboardShouldPersistTaps="handled">
+        <View style={styles.formContainer}>
+          <TextInput
+            label="Medicine Name"
+            value={medicine.name}
+            onChangeText={(text) => setMedicine({ ...medicine, name: text })}
+            style={styles.input}
+            mode="outlined"
+            theme={{ roundness: 20, colors: { primary: '#007AFF' } }}
+            textColor="#000"
           />
-        )}
-      </View>
+
+          <TextInput
+            label="Instructions"
+            value={medicine.instructions}
+            onChangeText={(text) => setMedicine({ ...medicine, instructions: text })}
+            style={styles.input}
+            multiline
+            mode="outlined"
+            theme={{ roundness: 20, colors: { primary: '#007AFF' } }}
+            textColor="#000"
+          />
+
+          <View style={styles.pickerContainer}>
+            <Picker
+              selectedValue={medicine.frequency}
+              onValueChange={(itemValue) => setMedicine({ ...medicine, frequency: itemValue })}
+              style={styles.picker}
+              mode="dropdown"
+            >
+              <Picker.Item label="Select Frequency" value="" />
+              <Picker.Item label="Daily" value="DAILY" />
+              <Picker.Item label="Weekly" value="WEEKLY" />
+              <Picker.Item label="Monthly" value="MONTHLY" />
+              <Picker.Item label="As Needed" value="AS_NEEDED" />
+            </Picker>
+          </View>
+
+          <View style={styles.pickerContainer}>
+            <Picker
+              selectedValue={medicine.timing}
+              onValueChange={(itemValue) => setMedicine({ ...medicine, timing: itemValue })}
+              style={styles.picker}
+              mode="dropdown"
+            >
+              <Picker.Item label="Select Timing" value="" />
+              <Picker.Item label="Before Meal" value="BEFORE_MEAL" />
+              <Picker.Item label="After Meal" value="AFTER_MEAL" />
+              <Picker.Item label="With Meal" value="WITH_MEAL" />
+              <Picker.Item label="Any Time" value="ANY_TIME" />
+            </Picker>
+          </View>
+
+          <TextInput
+            label="Dosage"
+            value={medicine.dosage}
+            onChangeText={(text) => setMedicine({ ...medicine, dosage: text })}
+            style={styles.input}
+            mode="outlined"
+            theme={{ roundness: 20, colors: { primary: '#007AFF' } }}
+            textColor="#000"
+          />
+
+          <TouchableOpacity onPress={() => setVisible(true)} style={styles.timeButton}>
+            <Text style={styles.timeButtonText}>
+              {medicine.time instanceof Date
+                ? medicine.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })
+                : 'Select Time'}
+            </Text>
+          </TouchableOpacity>
+
+          {visible && (
+            <DateTimePicker
+              value={medicine.time instanceof Date ? medicine.time : new Date()}
+              mode="time"
+              display="spinner"
+              onChange={(event, selectedTime) => {
+                setVisible(false);
+                if (selectedTime) {
+                  setMedicine({ ...medicine, time: selectedTime });
+                }
+              }}
+            />
+          )}
+        </View>
+      </ScrollView>
 
       <View style={styles.buttonContainer}>
         <Button mode="contained" onPress={handleUpdate} style={styles.button} labelStyle={styles.buttonText}>
           Update
         </Button>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 25,
     backgroundColor: '#F8F9FB',
-    justifyContent: 'space-between',
+  },
+  scrollContainer: {
+    padding: 25,
+    paddingBottom: 100, // Ensures space at the bottom when scrolling
   },
   formContainer: {
-    marginTop: 20, // Pushes form to the top
+    marginTop: 20,
   },
   input: {
     marginBottom: 15,
@@ -185,7 +192,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 15,
     borderWidth: 1,
-    borderColor: '#000',
+    borderColor: '#808080',
   },
   timeButtonText: {
     color: '#000',
@@ -199,9 +206,9 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#1a237e',
-    borderRadius: 20,
-    paddingVertical: 10,
-    paddingHorizontal: 25,
+    borderRadius: 30,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
     minWidth: 80,
   },
   buttonText: {
@@ -209,4 +216,3 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
 });
-

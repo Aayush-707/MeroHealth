@@ -12,7 +12,6 @@ export default function MedicationDetailScreen({ route, navigation }) {
   const [isLoading, setIsLoading] = useState(true);
   const { deleteMedicine, refreshMedicines } = useContext(MedicineContext);
 
-  // Use useFocusEffect instead of useEffect for better screen focus handling
   useFocusEffect(
     React.useCallback(() => {
       fetchMedicationDetails();
@@ -69,7 +68,6 @@ export default function MedicationDetailScreen({ route, navigation }) {
       if (!medication?.id) {
         throw new Error('Medication ID not found');
       }
-
       await api.delete(`/medications/${medication.id}/`);
       await refreshMedicines();
       Alert.alert("Success", "Medication deleted successfully");
@@ -80,24 +78,9 @@ export default function MedicationDetailScreen({ route, navigation }) {
     }
   };
 
-  if (isLoading) {
-    return <View style={styles.loading}><Title>Loading...</Title></View>;
-  }
-
-  if (!medication || !schedule) {
-    return (
-      <View style={styles.loading}>
-        <Title>No medication details found</Title>
-      </View>
-    );
-  }
-
-  // Rest of your render code remains the same...
-
   const formatTime = (timeString) => {
     if (!timeString) return 'Time not set';
     try {
-      // Handle time string from Django (HH:mm:ss format)
       const [hours, minutes] = timeString.split(':');
       const date = new Date();
       date.setHours(parseInt(hours, 10));
@@ -113,26 +96,35 @@ export default function MedicationDetailScreen({ route, navigation }) {
     }
   };
 
+  const formatText = (value) => {
+    const mapping = {
+      DAILY: 'Daily',
+      WITH_MEAL: 'With Meal'
+    };
+    return mapping[value] || value;
+  };
+
+  if (isLoading) {
+    return <View style={styles.loading}><Title>Loading...</Title></View>;
+  }
+
+  if (!medication || !schedule) {
+    return (
+      <View style={styles.loading}>
+        <Title>No medication details found</Title>
+      </View>
+    );
+  }
+
   return (
     <ScrollView style={styles.container}>
       <Card style={styles.card}>
         <Card.Content>
-        <View style={styles.headerContainer}>
+          <View style={styles.headerContainer}>
             <Title style={styles.title}>{medication.name}</Title>
             <View style={styles.actionButtons}>
-              <IconButton
-                icon="pencil"
-                size={24}
-                onPress={handleEdit}
-                style={styles.editButton}
-              />
-              <IconButton
-                icon="delete"
-                size={24}
-                onPress={handleDelete}
-                style={styles.deleteButton}
-                color="red"
-              />
+              <IconButton icon="pencil" size={24} onPress={handleEdit} style={styles.editButton} />
+              <IconButton icon="delete" size={24} onPress={handleDelete} style={styles.deleteButton} color="red" />
             </View>
           </View>
           <Divider style={styles.divider} />
@@ -142,8 +134,8 @@ export default function MedicationDetailScreen({ route, navigation }) {
 
           <Title style={styles.sectionTitle}>Schedule Details</Title>
           <Paragraph>Dosage: {schedule.dosage}</Paragraph>
-          <Paragraph>Frequency: {schedule.frequency}</Paragraph>
-          <Paragraph>Timing: {schedule.timing}</Paragraph>
+          <Paragraph>Frequency: {formatText(schedule.frequency)}</Paragraph>
+          <Paragraph>Timing: {formatText(schedule.timing)}</Paragraph>
           <Paragraph>Time: {formatTime(schedule.time)}</Paragraph>
         </Card.Content>
       </Card>
@@ -154,12 +146,15 @@ export default function MedicationDetailScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#f0f8ff',
     padding: 16,
   },
   card: {
     marginBottom: 16,
-    elevation: 4,
+    elevation: 6,
+    backgroundColor: '#ffffff',
+    borderRadius: 12,
+    padding: 10,
   },
   headerContainer: {
     flexDirection: 'row',
@@ -168,7 +163,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    flex: 1,
+    fontWeight: 'bold',
   },
   actionButtons: {
     flexDirection: 'row',
@@ -182,6 +177,12 @@ const styles = StyleSheet.create({
   },
   divider: {
     marginVertical: 16,
+    backgroundColor: '#ddd',
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginTop: 12,
   },
   loading: {
     flex: 1,

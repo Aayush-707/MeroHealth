@@ -5,9 +5,8 @@ import HomeScreen from '../screens/HomeScreen';
 import UpdateScreen from '../screens/UpdateScreen';
 import AccountScreen from '../screens/AccountScreen';
 import AddMedicineScreen from '../screens/AddMedicineScreen';
-import MedicationDetailScreen from '../screens/MedicationDetailScreen'
+import MedicationDetailScreen from '../screens/MedicationDetailScreen';
 import EditMedicineScreen from '../screens/EditMedicineScreen';
-
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
@@ -70,7 +69,6 @@ function HomeStackScreen() {
         component={MedicationDetailScreen}
         options={{ title: 'Medication Details' }}
       />
-
       <HomeStack.Screen
         name="EditMedicine"
         component={EditMedicineScreen}
@@ -169,6 +167,7 @@ export default function AppStackScreen() {
           fontWeight: '500',
           marginBottom: 4,
         },
+        keyboardHidesTabBar: true,  // ⬅️ This keeps the tab bar from getting pushed up
         headerShown: false,
       })}
     >
