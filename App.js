@@ -5,6 +5,7 @@ import AuthStackScreen from './src/navigation/AuthStack';
 import AppStackScreen from './src/navigation/AppStack';
 import { UserProvider } from './src/context/UserContext';
 import { MedicineProvider } from './src/context/MedicineContext';
+import { CaregiverProvider } from './src/context/CaregiverContext';
 import { useContext } from 'react';
 import { UserContext } from './src/context/UserContext';
 
@@ -29,9 +30,11 @@ export default function App() {
     <PaperProvider>
       <UserProvider>
         <MedicineProvider>
-          <NavigationContainer>
-            <RootNavigator />
-          </NavigationContainer>
+          <CaregiverProvider>
+            <NavigationContainer>
+              <RootNavigator />
+            </NavigationContainer>
+          </CaregiverProvider>
         </MedicineProvider>
       </UserProvider>
     </PaperProvider>
