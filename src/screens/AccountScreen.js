@@ -79,15 +79,35 @@ const handleRemoveCaregiver = (caregiverId) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {user?.user_type === 'PATIENT' && (
-        <List.Item
-          title="Link Caregiver Account"
-          description="Connect a caregiver to manage medications"
-          left={(props) => <List.Icon {...props} icon="account-heart" />}
-          style={styles.linkCaregiverItem}
-          titleStyle={styles.linkTitle}
-          descriptionStyle={styles.linkDescription}
-          onPress={handleLinkCaregiver}
-        />
+        <>
+          <List.Item
+            title="Link Caregiver Account"
+            description="Connect a caregiver to manage medications"
+            left={(props) => <List.Icon {...props} icon="account-heart" />}
+            style={styles.linkCaregiverItem}
+            titleStyle={styles.linkTitle}
+            descriptionStyle={styles.linkDescription}
+            onPress={handleLinkCaregiver}
+          />
+
+          {caregivers.length > 0 && caregivers.map((caregiver) => (
+            <List.Item
+              key={caregiver.id}
+              title={caregiver.caregiver_email}
+              description={`${caregiver.relationship_display} • ${caregiver.permission_level_display}`}
+              left={props => <List.Icon {...props} icon="account-heart" />}
+              right={props => (
+                <IconButton
+                  {...props}
+                  icon="delete"
+                  color="red"
+                  onPress={() => handleRemoveCaregiver(caregiver.id)}
+                />
+              )}
+              style={styles.caregiverItem}
+            />
+          ))}
+        </>
       )}
 
       {user &&
@@ -120,23 +140,7 @@ const handleRemoveCaregiver = (caregiverId) => {
             />
           ))}
 
-          {caregivers.map((caregiver) => (
-            <List.Item
-              key={caregiver.id}
-              title={caregiver.caregiver_email}
-              description={`${caregiver.relationship_display} • ${caregiver.permission_level_display}`}
-              left={props => <List.Icon {...props} icon="account-heart" />}
-              right={props => (
-                <IconButton
-                  {...props}
-                  icon="delete"
-                  color="red"
-                  onPress={() => handleRemoveCaregiver(caregiver.id)}
-                />
-              )}
-              style={styles.caregiverItem}
-            />
-          ))}
+          
 
 
       <Button

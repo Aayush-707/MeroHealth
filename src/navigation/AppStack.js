@@ -7,11 +7,13 @@ import AccountScreen from '../screens/AccountScreen';
 import AddMedicineScreen from '../screens/AddMedicineScreen';
 import MedicationDetailScreen from '../screens/MedicationDetailScreen';
 import EditMedicineScreen from '../screens/EditMedicineScreen';
+import PatientMedicationsScreen from '../screens/PatientMedicationsScreen';
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
 const UpdateStack = createStackNavigator();
 const AccountStack = createStackNavigator();
+const Stack = createStackNavigator();
 
 const headerStyle = {
   headerStyle: {
@@ -90,6 +92,11 @@ function HomeStackScreen() {
           )
         }}
       />
+      <HomeStack.Screen
+        name="PatientMedications"
+        component={PatientMedicationsScreen}
+        options={{ title: "Patient's Medications" }}
+      />
     </HomeStack.Navigator>
   );
 }
@@ -123,6 +130,7 @@ function AccountStackScreen() {
     </AccountStack.Navigator>
   );
 }
+
 
 export default function AppStackScreen() {
   return (

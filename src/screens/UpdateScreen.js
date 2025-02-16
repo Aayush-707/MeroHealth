@@ -4,6 +4,12 @@ import { Card, Title, Paragraph, useTheme } from 'react-native-paper';
 import { MaterialIcons } from '@expo/vector-icons';
 import { MedicineContext } from '../context/MedicineContext';
 
+const formatTime = (timeString) => {
+  if (!timeString) return '';
+  const [hours, minutes] = timeString.split(':');
+  return `${hours}:${minutes}`;
+};
+
 export default function UpdateScreen() {
   const { medicines } = useContext(MedicineContext);
   const { colors } = useTheme();
@@ -39,7 +45,7 @@ export default function UpdateScreen() {
               <View style={styles.timeRow}>
                 <MaterialIcons name="access-time" size={16} color="#616161" />
                 <Paragraph style={styles.timeText}>
-                  {item.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                {formatTime(item.time)}
                 </Paragraph>
               </View>
             </Card.Content>

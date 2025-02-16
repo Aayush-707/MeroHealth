@@ -1,30 +1,81 @@
 import React, { useContext, useState } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { View, FlatList, StyleSheet, Text } from 'react-native';
-import { FAB, Card, Title, Paragraph } from 'react-native-paper';
+import { FAB, Card, Title, Paragraph, Button } from 'react-native-paper';
 import { MedicineContext } from '../context/MedicineContext';
 import { UserContext } from '../context/UserContext';
+import api from '../services/api';
 
 export default function HomeScreen({ navigation }) {
   const { medicines, refreshMedicines } = useContext(MedicineContext);
-  const { role } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
+  const [patients, setPatients] = useState([]);
 
   useFocusEffect(
     React.useCallback(() => {
       const loadData = async () => {
         setIsLoading(true);
-        await refreshMedicines();
+        if (user?.user_type === 'CAREGIVER') {
+          try {
+            const response = await api.get('/users/caregiver/dashboard/');
+            setPatients(response.data);
+          } catch (error) {
+            console.error('Error fetching patients:', error);
+          }
+        } else {
+          await refreshMedicines();
+        }
         setIsLoading(false);
       };
       loadData();
-    }, [])
+    }, [user?.user_type])
   );
 
   if (isLoading) {
     return (
       <View style={styles.emptyContainer}>
-        <Text>Loading medications...</Text>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
+
+  // Caregiver View
+  if (user?.user_type === 'CAREGIVER') {
+    return (
+      <View style={styles.container}>
+        <Title style={styles.pageTitle}>My Patients</Title>
+        {patients.length === 0 ? (
+          <View style={styles.emptyContainer}>
+            <Text style={styles.emptyText}>No patients assigned</Text>
+          </View>
+        ) : (
+          <FlatList
+            data={patients}
+            keyExtractor={(item) => item.patient_id.toString()}
+            contentContainerStyle={styles.listContent}
+            renderItem={({ item }) => (
+              <Card style={styles.card}>
+                <Card.Content>
+                  <Title style={styles.medicineTitle}>{item.patient_name}</Title>
+                  <Paragraph>Email: {item.patient_email}</Paragraph>
+                  <Paragraph>Relationship: {item.relationship}</Paragraph>
+                  {item.can_view_adherence && (
+                    <Button 
+                      mode="contained" 
+                      style={styles.viewButton}
+                      onPress={() => navigation.navigate('PatientMedications', { 
+                        patientId: item.patient_id 
+                      })}
+                    >
+                      View Medications
+                    </Button>
+                  )}
+                </Card.Content>
+              </Card>
+            )}
+          />
+        )}
       </View>
     );
   }
@@ -65,7 +116,7 @@ export default function HomeScreen({ navigation }) {
           )}
         />
       )}
-      {role === "PATIENT" && (
+      {user?.user_type === "PATIENT" && (
         <FAB
           style={styles.fab}
           icon="plus"
@@ -133,5 +184,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#616161",
     fontStyle: "italic",
+  },
+  pageTitle: {
+    fontSize: 24,
+    fontWeight: '700',
+    padding: 16,
+    color: '#1a237e',
+  },
+  viewButton: {
+    marginTop: 10,
+    backgroundColor: '#1a237e',
   },
 });
