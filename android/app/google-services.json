@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "645059825606",
+    "project_id": "merohealth-5e627",
+    "storage_bucket": "merohealth-5e627.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:645059825606:android:9f0e367276633876006cc7",
+        "android_client_info": {
+          "package_name": "com.yourcompany.merohealth"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCkZpf1TepWyiEfbyMLt9zv9udS2rFMDs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
