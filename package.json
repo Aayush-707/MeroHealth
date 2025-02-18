@@ -34,7 +34,9 @@
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-paper": "^5.13.1",
     "react-native-paper-dates": "^0.22.29",
-    "react-native-safe-area-context": "^5.2.0"
+    "react-native-safe-area-context": "^5.2.0",
+    "expo-splash-screen": "~0.29.22",
+    "expo-device": "~7.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
