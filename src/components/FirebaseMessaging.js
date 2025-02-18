@@ -40,24 +40,7 @@ async function requestAndroidNotificationPermission() {
 async function getNotificationToken() {
     try {
         const token = await messaging().getToken();
-        // console.log('Notification Token:', token);
-        if (Platform.OS == 'ios') {
-            if (token) {
-                const userToken = await getUserToken();
-                if (userToken) {
-                    const dPlatform = Device.osName;
-                    const dName = Device.deviceName;
-                    const manufacturer = Device.brand;
-                    const payload = {
-                        deviceToken: token,
-                        devicePlatform: dPlatform,
-                        deviceName: dName,
-                        deviceType: manufacturer
-                    }
-                    await sendNotificationToken(userToken, payload);
-                }
-            }
-        }
+        console.log('Notification Token:', token);
     } catch (error) {
         console.error('Error getting notification token:', error);
     }
