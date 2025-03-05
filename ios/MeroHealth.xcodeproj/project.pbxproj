@@ -14,6 +14,7 @@
 		96905EF65AED1B983A6B3ABC /* libPods-MeroHealth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-MeroHealth.a */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		72B57B58A52645BC955AB179 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2CA129AEBF4587B4163553 /* noop-file.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,8 @@
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-MeroHealth/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		1B2CA129AEBF4587B4163553 /* noop-file.swift */ = {isa = PBXFileReference; name = "noop-file.swift"; path = "MeroHealth/noop-file.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		DB9AB79F011F4016A6071DDE /* MeroHealth-Bridging-Header.h */ = {isa = PBXFileReference; name = "MeroHealth-Bridging-Header.h"; path = "MeroHealth/MeroHealth-Bridging-Header.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +57,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
+				1B2CA129AEBF4587B4163553 /* noop-file.swift */,
+				DB9AB79F011F4016A6071DDE /* MeroHealth-Bridging-Header.h */,
 			);
 			name = MeroHealth;
 			sourceTree = "<group>";
@@ -193,6 +198,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
+				D4A8362005A645099387ECAB /* MeroHealth-Bridging-Header.h in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +274,7 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */,
+				72B57B58A52645BC955AB179 /* noop-file.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,11 +302,14 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.name.MeroHealth;
-				PRODUCT_NAME = MeroHealth;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.merohealth";
+				PRODUCT_NAME = "MeroHealth";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_OBJC_BRIDGING_HEADER = MeroHealth/MeroHealth-Bridging-Header.h;
+				CODE_SIGN_ENTITLEMENTS = MeroHealth/MeroHealth.entitlements;
 			};
 			name = Debug;
 		};
@@ -319,10 +329,13 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.name.MeroHealth;
-				PRODUCT_NAME = MeroHealth;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.merohealth";
+				PRODUCT_NAME = "MeroHealth";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_OBJC_BRIDGING_HEADER = MeroHealth/MeroHealth-Bridging-Header.h;
+				CODE_SIGN_ENTITLEMENTS = MeroHealth/MeroHealth.entitlements;
 			};
 			name = Release;
 		};

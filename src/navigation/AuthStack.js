@@ -8,7 +8,7 @@ const Stack = createStackNavigator();
 
 export default function AuthStackScreen() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='Login'>
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="RoleSelection" component={RoleSelectionScreen} />
       <Stack.Screen name="PatientRegister" component={PatientRegisterScreen} />

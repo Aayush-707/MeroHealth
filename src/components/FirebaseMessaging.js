@@ -1,7 +1,7 @@
 import messaging from '@react-native-firebase/messaging';
 import { PermissionsAndroid, Linking, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as Device from 'expo-device';
+//import * as Device from 'expo-device';
 
 const getUserToken = async () => {
     const token = await AsyncStorage.getItem("@user");

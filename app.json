@@ -12,12 +12,6 @@
       "backgroundColor": "#ffffff"
     },
     "plugins": [
-      [
-        "expo-notifications",
-        {
-          "color": "#ffffff"
-        }
-      ]
     ],
     "updates": {
       "fallbackToCacheTimeout": 0
