@@ -2,13 +2,14 @@
 .vscode
 # dependencies
 node_modules/
-
+build-apk/
 # Expo
 .expo/
 dist/
 web-build/
 expo-env.d.ts
 
+*.apk
 # Native
 *.orig.*
 *.jks
