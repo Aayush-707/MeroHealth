@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.yourcompany.merohealth.app-mergeDebugResources-63:/values-hdpi-v4/values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Asus\\.gradle\\caches\\8.10.2\\transforms\\d5899ca58e1d1c4c5de7a45fa3b45756\\transformed\\appcompat-1.7.0\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        }
+    ]
+}

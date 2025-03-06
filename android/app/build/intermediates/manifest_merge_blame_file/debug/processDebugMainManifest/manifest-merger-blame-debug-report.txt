@@ -1,0 +1,724 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.yourcompany.merohealth"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+11-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:4:3-75
+11-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:4:20-73
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:2:3-64
+12-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:2:20-62
+13    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+13-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:3:3-77
+13-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:3:20-75
+14    <uses-permission android:name="android.permission.VIBRATE" />
+14-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:5:3-63
+14-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:5:20-61
+15    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+15-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:6:3-78
+15-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:6:20-76
+16
+17    <queries>
+17-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:7:3-13:13
+18        <intent>
+18-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:8:5-12:14
+19            <action android:name="android.intent.action.VIEW" />
+19-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:9:7-58
+19-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:9:15-56
+20
+21            <category android:name="android.intent.category.BROWSABLE" />
+21-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:10:7-67
+21-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:10:17-65
+22
+23            <data android:scheme="https" />
+23-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:11:7-37
+23-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:11:13-35
+24        </intent>
+25
+26        <package android:name="host.exp.exponent" /> <!-- Query open documents -->
+26-->[:expo-dev-launcher] C:\Users\Asus\MeroHealth\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-53
+26-->[:expo-dev-launcher] C:\Users\Asus\MeroHealth\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:18-50
+27        <intent>
+27-->[:expo-file-system] C:\Users\Asus\MeroHealth\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:15:9-17:18
+28            <action android:name="android.intent.action.OPEN_DOCUMENT_TREE" />
+28-->[:expo-file-system] C:\Users\Asus\MeroHealth\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:16:13-79
+28-->[:expo-file-system] C:\Users\Asus\MeroHealth\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:16:21-76
+29        </intent>
+30    </queries>
+31
+32    <uses-permission android:name="android.permission.WAKE_LOCK" />
+32-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-68
+32-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:22-65
+33    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+33-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:5-79
+33-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:22-76
+34    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+34-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-81
+34-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:22-78
+35    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+35-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:5-77
+35-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:22-74
+36    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+36-->[com.google.firebase:firebase-messaging:24.1.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\274b9706e874a29b9779e9863e6a2ea8\transformed\firebase-messaging-24.1.0\AndroidManifest.xml:26:5-82
+36-->[com.google.firebase:firebase-messaging:24.1.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\274b9706e874a29b9779e9863e6a2ea8\transformed\firebase-messaging-24.1.0\AndroidManifest.xml:26:22-79
+37
+38    <permission
+38-->[androidx.core:core:1.13.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\879be8a70b9f01fd422f0500f6021c0d\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
+39        android:name="com.yourcompany.merohealth.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+39-->[androidx.core:core:1.13.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\879be8a70b9f01fd422f0500f6021c0d\transformed\core-1.13.1\AndroidManifest.xml:23:9-81
+40        android:protectionLevel="signature" />
+40-->[androidx.core:core:1.13.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\879be8a70b9f01fd422f0500f6021c0d\transformed\core-1.13.1\AndroidManifest.xml:24:9-44
+41
+42    <uses-permission android:name="com.yourcompany.merohealth.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+42-->[androidx.core:core:1.13.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\879be8a70b9f01fd422f0500f6021c0d\transformed\core-1.13.1\AndroidManifest.xml:26:5-97
+42-->[androidx.core:core:1.13.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\879be8a70b9f01fd422f0500f6021c0d\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
+43    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" /> <!-- for android -->
+43-->[com.android.installreferrer:installreferrer:2.2] C:\Users\Asus\.gradle\caches\8.10.2\transforms\052a748ee0de99b073a3c3773c631bee\transformed\installreferrer-2.2\AndroidManifest.xml:9:5-110
+43-->[com.android.installreferrer:installreferrer:2.2] C:\Users\Asus\.gradle\caches\8.10.2\transforms\052a748ee0de99b073a3c3773c631bee\transformed\installreferrer-2.2\AndroidManifest.xml:9:22-107
+44    <!-- <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/> -->
+45    <!-- <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS"/> -->
+46    <!-- <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" /> -->
+47    <!-- <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" /> -->
+48    <!-- for Samsung -->
+49    <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
+49-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:19:5-86
+49-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:19:22-83
+50    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" /> <!-- for htc -->
+50-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:20:5-87
+50-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:20:22-84
+51    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
+51-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:23:5-81
+51-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:23:22-78
+52    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" /> <!-- for sony -->
+52-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:24:5-83
+52-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:24:22-80
+53    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE" />
+53-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:27:5-88
+53-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:27:22-85
+54    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE" /> <!-- for apex -->
+54-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:28:5-92
+54-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:28:22-89
+55    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT" /> <!-- for solid -->
+55-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:31:5-84
+55-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:31:22-81
+56    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE" /> <!-- for huawei -->
+56-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:34:5-83
+56-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:34:22-80
+57    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
+57-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:37:5-91
+57-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:37:22-88
+58    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS" />
+58-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:38:5-92
+58-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:38:22-89
+59    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" /> <!-- for ZUK -->
+59-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:39:5-93
+59-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:39:22-90
+60    <uses-permission android:name="android.permission.READ_APP_BADGE" /> <!-- for OPPO -->
+60-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:42:5-73
+60-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:42:22-70
+61    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS" />
+61-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:45:5-82
+61-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:45:22-79
+62    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS" /> <!-- for EvMe -->
+62-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:46:5-83
+62-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:46:22-80
+63    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ" />
+63-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:49:5-88
+63-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:49:22-85
+64    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE" />
+64-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:50:5-89
+64-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Asus\.gradle\caches\8.10.2\transforms\8f83d9fd4c43f3c90abd21831422202b\transformed\ShortcutBadger-1.1.22\AndroidManifest.xml:50:22-86
+65
+66    <application
+66-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:14:3-31:17
+67        android:name="com.yourcompany.merohealth.MainApplication"
+67-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:14:16-47
+68        android:allowBackup="true"
+68-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:14:162-188
+69        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+69-->[androidx.core:core:1.13.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\879be8a70b9f01fd422f0500f6021c0d\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
+70        android:debuggable="true"
+71        android:extractNativeLibs="false"
+72        android:icon="@mipmap/ic_launcher"
+72-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:14:81-115
+73        android:label="@string/app_name"
+73-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:14:48-80
+74        android:roundIcon="@mipmap/ic_launcher_round"
+74-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:14:116-161
+75        android:supportsRtl="true"
+75-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:14:221-247
+76        android:theme="@style/AppTheme"
+76-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:14:189-220
+77        android:usesCleartextTraffic="true" >
+77-->C:\Users\Asus\MeroHealth\android\app\src\debug\AndroidManifest.xml:7:9-44
+78
+79        <!-- Add Firebase Notification Settings -->
+80        <meta-data
+80-->C:\Users\Asus\MeroHealth\android\app\src\debug\AndroidManifest.xml:13:9-16:48
+81            android:name="com.google.firebase.messaging.default_notification_color"
+81-->C:\Users\Asus\MeroHealth\android\app\src\debug\AndroidManifest.xml:14:13-84
+82            android:resource="@color/notification_icon_color" />
+82-->C:\Users\Asus\MeroHealth\android\app\src\debug\AndroidManifest.xml:15:13-62
+83        <meta-data
+83-->C:\Users\Asus\MeroHealth\android\app\src\debug\AndroidManifest.xml:18:9-20:68
+84            android:name="com.google.firebase.messaging.default_notification_icon"
+84-->C:\Users\Asus\MeroHealth\android\app\src\debug\AndroidManifest.xml:19:13-83
+85            android:resource="@drawable/ic_stat_ic_notification" />
+85-->C:\Users\Asus\MeroHealth\android\app\src\debug\AndroidManifest.xml:20:13-65
+86        <meta-data
+86-->C:\Users\Asus\MeroHealth\android\app\src\debug\AndroidManifest.xml:22:9-25:45
+87            android:name="com.google.firebase.messaging.default_notification_channel_id"
+87-->C:\Users\Asus\MeroHealth\android\app\src\debug\AndroidManifest.xml:23:13-89
+88            android:value="default_notification_channel" />
+88-->C:\Users\Asus\MeroHealth\android\app\src\debug\AndroidManifest.xml:24:13-57
+89        <meta-data
+89-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:15:5-83
+90            android:name="expo.modules.updates.ENABLED"
+90-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:15:16-59
+91            android:value="false" />
+91-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:15:60-81
+92        <meta-data
+92-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:16:5-105
+93            android:name="expo.modules.updates.EXPO_UPDATES_CHECK_ON_LAUNCH"
+93-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:16:16-80
+94            android:value="ALWAYS" />
+94-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:16:81-103
+95        <meta-data
+95-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:17:5-99
+96            android:name="expo.modules.updates.EXPO_UPDATES_LAUNCH_WAIT_MS"
+96-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:17:16-79
+97            android:value="0" />
+97-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:17:80-97
+98
+99        <activity
+99-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:18:5-30:16
+100            android:name="com.yourcompany.merohealth.MainActivity"
+100-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:18:15-43
+101            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|uiMode"
+101-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:18:44-134
+102            android:exported="true"
+102-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:18:256-279
+103            android:launchMode="singleTask"
+103-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:18:135-166
+104            android:screenOrientation="portrait"
+104-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:18:280-316
+105            android:theme="@style/Theme.App.SplashScreen"
+105-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:18:210-255
+106            android:windowSoftInputMode="adjustResize" >
+106-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:18:167-209
+107            <intent-filter>
+107-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:19:7-22:23
+108                <action android:name="android.intent.action.MAIN" />
+108-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:20:9-60
+108-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:20:17-58
+109
+110                <category android:name="android.intent.category.LAUNCHER" />
+110-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:21:9-68
+110-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:21:19-66
+111            </intent-filter>
+112            <intent-filter>
+112-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:23:7-29:23
+113                <action android:name="android.intent.action.VIEW" />
+113-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:9:7-58
+113-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:9:15-56
+114
+115                <category android:name="android.intent.category.DEFAULT" />
+115-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:25:9-67
+115-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:25:19-65
+116                <category android:name="android.intent.category.BROWSABLE" />
+116-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:10:7-67
+116-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:10:17-65
+117
+118                <data android:scheme="com.yourcompany.merohealth" />
+118-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:11:7-37
+118-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:11:13-35
+119                <data android:scheme="exp+merohealth" />
+119-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:11:7-37
+119-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:11:13-35
+120            </intent-filter>
+121        </activity>
+122
+123        <service
+123-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:12:9-14:40
+124            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingHeadlessService"
+124-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:13:13-103
+125            android:exported="false" />
+125-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:14:13-37
+126        <service
+126-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:15:9-21:19
+127            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingService"
+127-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:16:13-95
+128            android:exported="false" >
+128-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:17:13-37
+129            <intent-filter>
+129-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:18:13-20:29
+130                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+130-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:19:17-78
+130-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:19:25-75
+131            </intent-filter>
+132        </service>
+133
+134        <receiver
+134-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:23:9-30:20
+135            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingReceiver"
+135-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:24:13-96
+136            android:exported="true"
+136-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:25:13-36
+137            android:permission="com.google.android.c2dm.permission.SEND" >
+137-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:26:13-73
+138            <intent-filter>
+138-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:27:13-29:29
+139                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+139-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:28:17-81
+139-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:28:25-78
+140            </intent-filter>
+141        </receiver>
+142
+143        <meta-data
+143-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:32:9-34:36
+144            android:name="firebase_messaging_auto_init_enabled"
+144-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:33:13-64
+145            android:value="true" />
+145-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:34:13-33
+146        <meta-data
+146-->[:react-native-firebase_app] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:9-11:36
+147            android:name="app_data_collection_default_enabled"
+147-->[:react-native-firebase_app] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:13-63
+148            android:value="true" />
+148-->[:react-native-firebase_app] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:13-33
+149
+150        <service
+150-->[:react-native-firebase_app] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:13:9-21:19
+151            android:name="com.google.firebase.components.ComponentDiscoveryService"
+151-->[:react-native-firebase_app] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:14:13-84
+152            android:directBootAware="true"
+152-->[:react-native-firebase_app] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:15:13-43
+153            android:exported="false" >
+153-->[:react-native-firebase_app] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:16:13-37
+154            <meta-data
+154-->[:react-native-firebase_app] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:18:13-20:85
+155                android:name="com.google.firebase.components:io.invertase.firebase.app.ReactNativeFirebaseAppRegistrar"
+155-->[:react-native-firebase_app] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:19:17-120
+156                android:value="com.google.firebase.components.ComponentRegistrar" />
+156-->[:react-native-firebase_app] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:20:17-82
+157            <meta-data
+157-->[com.google.firebase:firebase-messaging:24.1.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\274b9706e874a29b9779e9863e6a2ea8\transformed\firebase-messaging-24.1.0\AndroidManifest.xml:57:13-59:85
+158                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingKtxRegistrar"
+158-->[com.google.firebase:firebase-messaging:24.1.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\274b9706e874a29b9779e9863e6a2ea8\transformed\firebase-messaging-24.1.0\AndroidManifest.xml:58:17-122
+159                android:value="com.google.firebase.components.ComponentRegistrar" />
+159-->[com.google.firebase:firebase-messaging:24.1.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\274b9706e874a29b9779e9863e6a2ea8\transformed\firebase-messaging-24.1.0\AndroidManifest.xml:59:17-82
+160            <meta-data
+160-->[com.google.firebase:firebase-messaging:24.1.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\274b9706e874a29b9779e9863e6a2ea8\transformed\firebase-messaging-24.1.0\AndroidManifest.xml:60:13-62:85
+161                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+161-->[com.google.firebase:firebase-messaging:24.1.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\274b9706e874a29b9779e9863e6a2ea8\transformed\firebase-messaging-24.1.0\AndroidManifest.xml:61:17-119
+162                android:value="com.google.firebase.components.ComponentRegistrar" />
+162-->[com.google.firebase:firebase-messaging:24.1.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\274b9706e874a29b9779e9863e6a2ea8\transformed\firebase-messaging-24.1.0\AndroidManifest.xml:62:17-82
+163            <meta-data
+163-->[com.google.firebase:firebase-installations:18.0.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\e0c8c14970bb06cf549ce936cfb89260\transformed\firebase-installations-18.0.0\AndroidManifest.xml:15:13-17:85
+164                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsKtxRegistrar"
+164-->[com.google.firebase:firebase-installations:18.0.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\e0c8c14970bb06cf549ce936cfb89260\transformed\firebase-installations-18.0.0\AndroidManifest.xml:16:17-130
+165                android:value="com.google.firebase.components.ComponentRegistrar" />
+165-->[com.google.firebase:firebase-installations:18.0.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\e0c8c14970bb06cf549ce936cfb89260\transformed\firebase-installations-18.0.0\AndroidManifest.xml:17:17-82
+166            <meta-data
+166-->[com.google.firebase:firebase-installations:18.0.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\e0c8c14970bb06cf549ce936cfb89260\transformed\firebase-installations-18.0.0\AndroidManifest.xml:18:13-20:85
+167                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+167-->[com.google.firebase:firebase-installations:18.0.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\e0c8c14970bb06cf549ce936cfb89260\transformed\firebase-installations-18.0.0\AndroidManifest.xml:19:17-127
+168                android:value="com.google.firebase.components.ComponentRegistrar" />
+168-->[com.google.firebase:firebase-installations:18.0.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\e0c8c14970bb06cf549ce936cfb89260\transformed\firebase-installations-18.0.0\AndroidManifest.xml:20:17-82
+169            <meta-data
+169-->[com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\c2ca55c22b789ea0411a3a68d7d3f928\transformed\firebase-common-ktx-21.0.0\AndroidManifest.xml:12:13-14:85
+170                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
+170-->[com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\c2ca55c22b789ea0411a3a68d7d3f928\transformed\firebase-common-ktx-21.0.0\AndroidManifest.xml:13:17-116
+171                android:value="com.google.firebase.components.ComponentRegistrar" />
+171-->[com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\c2ca55c22b789ea0411a3a68d7d3f928\transformed\firebase-common-ktx-21.0.0\AndroidManifest.xml:14:17-82
+172            <meta-data
+172-->[com.google.firebase:firebase-common:21.0.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\c2ecaa8eed622ddda34822fa35336a8b\transformed\firebase-common-21.0.0\AndroidManifest.xml:35:13-37:85
+173                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
+173-->[com.google.firebase:firebase-common:21.0.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\c2ecaa8eed622ddda34822fa35336a8b\transformed\firebase-common-21.0.0\AndroidManifest.xml:36:17-109
+174                android:value="com.google.firebase.components.ComponentRegistrar" />
+174-->[com.google.firebase:firebase-common:21.0.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\c2ecaa8eed622ddda34822fa35336a8b\transformed\firebase-common-21.0.0\AndroidManifest.xml:37:17-82
+175            <meta-data
+175-->[com.google.firebase:firebase-datatransport:18.2.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\9d40b8c96b07483673196d48a1c58bec\transformed\firebase-datatransport-18.2.0\AndroidManifest.xml:25:13-27:85
+176                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+176-->[com.google.firebase:firebase-datatransport:18.2.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\9d40b8c96b07483673196d48a1c58bec\transformed\firebase-datatransport-18.2.0\AndroidManifest.xml:26:17-115
+177                android:value="com.google.firebase.components.ComponentRegistrar" />
+177-->[com.google.firebase:firebase-datatransport:18.2.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\9d40b8c96b07483673196d48a1c58bec\transformed\firebase-datatransport-18.2.0\AndroidManifest.xml:27:17-82
+178        </service>
+179
+180        <provider
+180-->[:react-native-firebase_app] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:23:9-27:38
+181            android:name="io.invertase.firebase.app.ReactNativeFirebaseAppInitProvider"
+181-->[:react-native-firebase_app] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:24:13-88
+182            android:authorities="com.yourcompany.merohealth.reactnativefirebaseappinitprovider"
+182-->[:react-native-firebase_app] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:25:13-86
+183            android:exported="false"
+183-->[:react-native-firebase_app] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:26:13-37
+184            android:initOrder="99" />
+184-->[:react-native-firebase_app] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\app\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:27:13-35
+185
+186        <activity
+186-->[:expo-dev-launcher] C:\Users\Asus\MeroHealth\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:12:9-25:20
+187            android:name="expo.modules.devlauncher.launcher.DevLauncherActivity"
+187-->[:expo-dev-launcher] C:\Users\Asus\MeroHealth\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:13:13-81
+188            android:exported="true"
+188-->[:expo-dev-launcher] C:\Users\Asus\MeroHealth\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:14:13-36
+189            android:launchMode="singleTask"
+189-->[:expo-dev-launcher] C:\Users\Asus\MeroHealth\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:15:13-44
+190            android:theme="@style/Theme.DevLauncher.LauncherActivity" >
+190-->[:expo-dev-launcher] C:\Users\Asus\MeroHealth\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:16:13-70
+191            <intent-filter>
+191-->[:expo-dev-launcher] C:\Users\Asus\MeroHealth\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:17:13-24:29
+192                <action android:name="android.intent.action.VIEW" />
+192-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:9:7-58
+192-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:9:15-56
+193
+194                <category android:name="android.intent.category.DEFAULT" />
+194-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:25:9-67
+194-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:25:19-65
+195                <category android:name="android.intent.category.BROWSABLE" />
+195-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:10:7-67
+195-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:10:17-65
+196
+197                <data android:scheme="expo-dev-launcher" />
+197-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:11:7-37
+197-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:11:13-35
+198            </intent-filter>
+199        </activity>
+200        <activity
+200-->[:expo-dev-launcher] C:\Users\Asus\MeroHealth\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:26:9-29:70
+201            android:name="expo.modules.devlauncher.launcher.errors.DevLauncherErrorActivity"
+201-->[:expo-dev-launcher] C:\Users\Asus\MeroHealth\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:27:13-93
+202            android:screenOrientation="portrait"
+202-->[:expo-dev-launcher] C:\Users\Asus\MeroHealth\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:28:13-49
+203            android:theme="@style/Theme.DevLauncher.ErrorActivity" />
+203-->[:expo-dev-launcher] C:\Users\Asus\MeroHealth\node_modules\expo-dev-launcher\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:29:13-67
+204        <activity
+204-->[:expo-dev-menu] C:\Users\Asus\MeroHealth\node_modules\expo-dev-menu\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-21:20
+205            android:name="expo.modules.devmenu.DevMenuActivity"
+205-->[:expo-dev-menu] C:\Users\Asus\MeroHealth\node_modules\expo-dev-menu\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:13-64
+206            android:exported="true"
+206-->[:expo-dev-menu] C:\Users\Asus\MeroHealth\node_modules\expo-dev-menu\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:13-36
+207            android:launchMode="singleTask"
+207-->[:expo-dev-menu] C:\Users\Asus\MeroHealth\node_modules\expo-dev-menu\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:13-44
+208            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" >
+208-->[:expo-dev-menu] C:\Users\Asus\MeroHealth\node_modules\expo-dev-menu\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:12:13-75
+209            <intent-filter>
+209-->[:expo-dev-menu] C:\Users\Asus\MeroHealth\node_modules\expo-dev-menu\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:13:13-20:29
+210                <action android:name="android.intent.action.VIEW" />
+210-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:9:7-58
+210-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:9:15-56
+211
+212                <category android:name="android.intent.category.DEFAULT" />
+212-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:25:9-67
+212-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:25:19-65
+213                <category android:name="android.intent.category.BROWSABLE" />
+213-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:10:7-67
+213-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:10:17-65
+214
+215                <data android:scheme="expo-dev-menu" />
+215-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:11:7-37
+215-->C:\Users\Asus\MeroHealth\android\app\src\main\AndroidManifest.xml:11:13-35
+216            </intent-filter>
+217        </activity>
+218
+219        <provider
+219-->[:expo-file-system] C:\Users\Asus\MeroHealth\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:21:9-30:20
+220            android:name="expo.modules.filesystem.FileSystemFileProvider"
+220-->[:expo-file-system] C:\Users\Asus\MeroHealth\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:22:13-74
+221            android:authorities="com.yourcompany.merohealth.FileSystemFileProvider"
+221-->[:expo-file-system] C:\Users\Asus\MeroHealth\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:23:13-74
+222            android:exported="false"
+222-->[:expo-file-system] C:\Users\Asus\MeroHealth\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:24:13-37
+223            android:grantUriPermissions="true" >
+223-->[:expo-file-system] C:\Users\Asus\MeroHealth\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:25:13-47
+224            <meta-data
+224-->[:expo-file-system] C:\Users\Asus\MeroHealth\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:27:13-29:70
+225                android:name="android.support.FILE_PROVIDER_PATHS"
+225-->[:expo-file-system] C:\Users\Asus\MeroHealth\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:28:17-67
+226                android:resource="@xml/file_system_provider_paths" />
+226-->[:expo-file-system] C:\Users\Asus\MeroHealth\node_modules\expo-file-system\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:29:17-67
+227        </provider>
+228
+229        <service
+229-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:9-17:19
+230            android:name="expo.modules.notifications.service.ExpoFirebaseMessagingService"
+230-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:12:13-91
+231            android:exported="false" >
+231-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:13:13-37
+232            <intent-filter android:priority="-1" >
+232-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:18:13-20:29
+233                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+233-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:19:17-78
+233-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:19:25-75
+234            </intent-filter>
+235        </service>
+236
+237        <receiver
+237-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:19:9-31:20
+238            android:name="expo.modules.notifications.service.NotificationsService"
+238-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:20:13-83
+239            android:enabled="true"
+239-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:21:13-35
+240            android:exported="false" >
+240-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:22:13-37
+241            <intent-filter android:priority="-1" >
+241-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:23:13-30:29
+241-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:23:28-49
+242                <action android:name="expo.modules.notifications.NOTIFICATION_EVENT" />
+242-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:24:17-88
+242-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:24:25-85
+243                <action android:name="android.intent.action.BOOT_COMPLETED" />
+243-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:25:17-79
+243-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:25:25-76
+244                <action android:name="android.intent.action.REBOOT" />
+244-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:26:17-71
+244-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:26:25-68
+245                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+245-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:27:17-82
+245-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:27:25-79
+246                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+246-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:28:17-82
+246-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:28:25-79
+247                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+247-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:29:17-84
+247-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:29:25-81
+248            </intent-filter>
+249        </receiver>
+250
+251        <activity
+251-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:33:9-40:75
+252            android:name="expo.modules.notifications.service.NotificationForwarderActivity"
+252-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:34:13-92
+253            android:excludeFromRecents="true"
+253-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:35:13-46
+254            android:exported="false"
+254-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:36:13-37
+255            android:launchMode="standard"
+255-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:37:13-42
+256            android:noHistory="true"
+256-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:38:13-37
+257            android:taskAffinity=""
+257-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:39:13-36
+258            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+258-->[:expo-notifications] C:\Users\Asus\MeroHealth\node_modules\expo-notifications\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:40:13-72
+259
+260        <meta-data
+260-->[:expo-modules-core] C:\Users\Asus\MeroHealth\node_modules\expo-modules-core\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:9-11:89
+261            android:name="org.unimodules.core.AppLoader#react-native-headless"
+261-->[:expo-modules-core] C:\Users\Asus\MeroHealth\node_modules\expo-modules-core\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:13-79
+262            android:value="expo.modules.adapters.react.apploader.RNHeadlessAppLoader" />
+262-->[:expo-modules-core] C:\Users\Asus\MeroHealth\node_modules\expo-modules-core\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:13-86
+263        <meta-data
+263-->[:expo-modules-core] C:\Users\Asus\MeroHealth\node_modules\expo-modules-core\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:12:9-15:45
+264            android:name="com.facebook.soloader.enabled"
+264-->[:expo-modules-core] C:\Users\Asus\MeroHealth\node_modules\expo-modules-core\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:13:13-57
+265            android:value="true" />
+265-->[:expo-modules-core] C:\Users\Asus\MeroHealth\node_modules\expo-modules-core\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:14:13-33
+266
+267        <activity
+267-->[com.facebook.react:react-android:0.76.7] C:\Users\Asus\.gradle\caches\8.10.2\transforms\991d77df1f0b1ec44c9171183c9f80d4\transformed\react-android-0.76.7-debug\AndroidManifest.xml:19:9-21:40
+268            android:name="com.facebook.react.devsupport.DevSettingsActivity"
+268-->[com.facebook.react:react-android:0.76.7] C:\Users\Asus\.gradle\caches\8.10.2\transforms\991d77df1f0b1ec44c9171183c9f80d4\transformed\react-android-0.76.7-debug\AndroidManifest.xml:20:13-77
+269            android:exported="false" />
+269-->[com.facebook.react:react-android:0.76.7] C:\Users\Asus\.gradle\caches\8.10.2\transforms\991d77df1f0b1ec44c9171183c9f80d4\transformed\react-android-0.76.7-debug\AndroidManifest.xml:21:13-37
+270
+271        <receiver
+271-->[com.google.firebase:firebase-messaging:24.1.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\274b9706e874a29b9779e9863e6a2ea8\transformed\firebase-messaging-24.1.0\AndroidManifest.xml:29:9-40:20
+272            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+272-->[com.google.firebase:firebase-messaging:24.1.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\274b9706e874a29b9779e9863e6a2ea8\transformed\firebase-messaging-24.1.0\AndroidManifest.xml:30:13-78
+273            android:exported="true"
+273-->[com.google.firebase:firebase-messaging:24.1.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\274b9706e874a29b9779e9863e6a2ea8\transformed\firebase-messaging-24.1.0\AndroidManifest.xml:31:13-36
+274            android:permission="com.google.android.c2dm.permission.SEND" >
+274-->[com.google.firebase:firebase-messaging:24.1.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\274b9706e874a29b9779e9863e6a2ea8\transformed\firebase-messaging-24.1.0\AndroidManifest.xml:32:13-73
+275            <intent-filter>
+275-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:27:13-29:29
+276                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+276-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:28:17-81
+276-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:28:25-78
+277            </intent-filter>
+278
+279            <meta-data
+279-->[com.google.firebase:firebase-messaging:24.1.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\274b9706e874a29b9779e9863e6a2ea8\transformed\firebase-messaging-24.1.0\AndroidManifest.xml:37:13-39:40
+280                android:name="com.google.android.gms.cloudmessaging.FINISHED_AFTER_HANDLED"
+280-->[com.google.firebase:firebase-messaging:24.1.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\274b9706e874a29b9779e9863e6a2ea8\transformed\firebase-messaging-24.1.0\AndroidManifest.xml:38:17-92
+281                android:value="true" />
+281-->[com.google.firebase:firebase-messaging:24.1.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\274b9706e874a29b9779e9863e6a2ea8\transformed\firebase-messaging-24.1.0\AndroidManifest.xml:39:17-37
+282        </receiver>
+283        <!--
+284             FirebaseMessagingService performs security checks at runtime,
+285             but set to not exported to explicitly avoid allowing another app to call it.
+286        -->
+287        <service
+287-->[com.google.firebase:firebase-messaging:24.1.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\274b9706e874a29b9779e9863e6a2ea8\transformed\firebase-messaging-24.1.0\AndroidManifest.xml:46:9-53:19
+288            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+288-->[com.google.firebase:firebase-messaging:24.1.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\274b9706e874a29b9779e9863e6a2ea8\transformed\firebase-messaging-24.1.0\AndroidManifest.xml:47:13-82
+289            android:directBootAware="true"
+289-->[com.google.firebase:firebase-messaging:24.1.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\274b9706e874a29b9779e9863e6a2ea8\transformed\firebase-messaging-24.1.0\AndroidManifest.xml:48:13-43
+290            android:exported="false" >
+290-->[com.google.firebase:firebase-messaging:24.1.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\274b9706e874a29b9779e9863e6a2ea8\transformed\firebase-messaging-24.1.0\AndroidManifest.xml:49:13-37
+291            <intent-filter android:priority="-500" >
+291-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:18:13-20:29
+292                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+292-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:19:17-78
+292-->[:react-native-firebase_messaging] C:\Users\Asus\MeroHealth\node_modules\@react-native-firebase\messaging\android\build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:19:25-75
+293            </intent-filter>
+294        </service>
+295
+296        <provider
+296-->[com.google.firebase:firebase-common:21.0.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\c2ecaa8eed622ddda34822fa35336a8b\transformed\firebase-common-21.0.0\AndroidManifest.xml:23:9-28:39
+297            android:name="com.google.firebase.provider.FirebaseInitProvider"
+297-->[com.google.firebase:firebase-common:21.0.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\c2ecaa8eed622ddda34822fa35336a8b\transformed\firebase-common-21.0.0\AndroidManifest.xml:24:13-77
+298            android:authorities="com.yourcompany.merohealth.firebaseinitprovider"
+298-->[com.google.firebase:firebase-common:21.0.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\c2ecaa8eed622ddda34822fa35336a8b\transformed\firebase-common-21.0.0\AndroidManifest.xml:25:13-72
+299            android:directBootAware="true"
+299-->[com.google.firebase:firebase-common:21.0.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\c2ecaa8eed622ddda34822fa35336a8b\transformed\firebase-common-21.0.0\AndroidManifest.xml:26:13-43
+300            android:exported="false"
+300-->[com.google.firebase:firebase-common:21.0.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\c2ecaa8eed622ddda34822fa35336a8b\transformed\firebase-common-21.0.0\AndroidManifest.xml:27:13-37
+301            android:initOrder="100" />
+301-->[com.google.firebase:firebase-common:21.0.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\c2ecaa8eed622ddda34822fa35336a8b\transformed\firebase-common-21.0.0\AndroidManifest.xml:28:13-36
+302
+303        <activity
+303-->[com.google.android.gms:play-services-auth:21.3.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\65ecbbadca4bffeb0cc687e99f10e849\transformed\play-services-auth-21.3.0\AndroidManifest.xml:23:9-27:75
+304            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+304-->[com.google.android.gms:play-services-auth:21.3.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\65ecbbadca4bffeb0cc687e99f10e849\transformed\play-services-auth-21.3.0\AndroidManifest.xml:24:13-93
+305            android:excludeFromRecents="true"
+305-->[com.google.android.gms:play-services-auth:21.3.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\65ecbbadca4bffeb0cc687e99f10e849\transformed\play-services-auth-21.3.0\AndroidManifest.xml:25:13-46
+306            android:exported="false"
+306-->[com.google.android.gms:play-services-auth:21.3.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\65ecbbadca4bffeb0cc687e99f10e849\transformed\play-services-auth-21.3.0\AndroidManifest.xml:26:13-37
+307            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+307-->[com.google.android.gms:play-services-auth:21.3.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\65ecbbadca4bffeb0cc687e99f10e849\transformed\play-services-auth-21.3.0\AndroidManifest.xml:27:13-72
+308        <!--
+309            Service handling Google Sign-In user revocation. For apps that do not integrate with
+310            Google Sign-In, this service will never be started.
+311        -->
+312        <service
+312-->[com.google.android.gms:play-services-auth:21.3.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\65ecbbadca4bffeb0cc687e99f10e849\transformed\play-services-auth-21.3.0\AndroidManifest.xml:33:9-37:51
+313            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+313-->[com.google.android.gms:play-services-auth:21.3.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\65ecbbadca4bffeb0cc687e99f10e849\transformed\play-services-auth-21.3.0\AndroidManifest.xml:34:13-89
+314            android:exported="true"
+314-->[com.google.android.gms:play-services-auth:21.3.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\65ecbbadca4bffeb0cc687e99f10e849\transformed\play-services-auth-21.3.0\AndroidManifest.xml:35:13-36
+315            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+315-->[com.google.android.gms:play-services-auth:21.3.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\65ecbbadca4bffeb0cc687e99f10e849\transformed\play-services-auth-21.3.0\AndroidManifest.xml:36:13-107
+316            android:visibleToInstantApps="true" />
+316-->[com.google.android.gms:play-services-auth:21.3.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\65ecbbadca4bffeb0cc687e99f10e849\transformed\play-services-auth-21.3.0\AndroidManifest.xml:37:13-48
+317
+318        <activity
+318-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\1f1ad80ec46b054b5a588aa8c7db831a\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:9-173
+319            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+319-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\1f1ad80ec46b054b5a588aa8c7db831a\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:19-85
+320            android:exported="false"
+320-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\1f1ad80ec46b054b5a588aa8c7db831a\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:146-170
+321            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+321-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\1f1ad80ec46b054b5a588aa8c7db831a\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:86-145
+322
+323        <provider
+323-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ef483ab108db28edf7743ee5d0859501\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+324            android:name="androidx.startup.InitializationProvider"
+324-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ef483ab108db28edf7743ee5d0859501\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+325            android:authorities="com.yourcompany.merohealth.androidx-startup"
+325-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ef483ab108db28edf7743ee5d0859501\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+326            android:exported="false" >
+326-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ef483ab108db28edf7743ee5d0859501\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
+327            <meta-data
+327-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ef483ab108db28edf7743ee5d0859501\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+328                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+328-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ef483ab108db28edf7743ee5d0859501\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
+329                android:value="androidx.startup" />
+329-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ef483ab108db28edf7743ee5d0859501\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+330            <meta-data
+330-->[androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\Asus\.gradle\caches\8.10.2\transforms\bbd8e03a7aa4e7ca0a041937ee46ea3a\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:29:13-31:52
+331                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+331-->[androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\Asus\.gradle\caches\8.10.2\transforms\bbd8e03a7aa4e7ca0a041937ee46ea3a\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:30:17-78
+332                android:value="androidx.startup" />
+332-->[androidx.lifecycle:lifecycle-process:2.8.3] C:\Users\Asus\.gradle\caches\8.10.2\transforms\bbd8e03a7aa4e7ca0a041937ee46ea3a\transformed\lifecycle-process-2.8.3\AndroidManifest.xml:31:17-49
+333            <meta-data
+333-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ee76a5afeb8f5fbd6ce921f89978194c\transformed\profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+334                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+334-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ee76a5afeb8f5fbd6ce921f89978194c\transformed\profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+335                android:value="androidx.startup" />
+335-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ee76a5afeb8f5fbd6ce921f89978194c\transformed\profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+336        </provider>
+337
+338        <meta-data
+338-->[com.google.android.gms:play-services-basement:18.4.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\899e35ca7b4117693d3662612b53d328\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:9-122
+339            android:name="com.google.android.gms.version"
+339-->[com.google.android.gms:play-services-basement:18.4.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\899e35ca7b4117693d3662612b53d328\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:20-65
+340            android:value="@integer/google_play_services_version" />
+340-->[com.google.android.gms:play-services-basement:18.4.0] C:\Users\Asus\.gradle\caches\8.10.2\transforms\899e35ca7b4117693d3662612b53d328\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:66-119
+341
+342        <receiver
+342-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ee76a5afeb8f5fbd6ce921f89978194c\transformed\profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+343            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+343-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ee76a5afeb8f5fbd6ce921f89978194c\transformed\profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+344            android:directBootAware="false"
+344-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ee76a5afeb8f5fbd6ce921f89978194c\transformed\profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+345            android:enabled="true"
+345-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ee76a5afeb8f5fbd6ce921f89978194c\transformed\profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+346            android:exported="true"
+346-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ee76a5afeb8f5fbd6ce921f89978194c\transformed\profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+347            android:permission="android.permission.DUMP" >
+347-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ee76a5afeb8f5fbd6ce921f89978194c\transformed\profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+348            <intent-filter>
+348-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ee76a5afeb8f5fbd6ce921f89978194c\transformed\profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+349                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+349-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ee76a5afeb8f5fbd6ce921f89978194c\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+349-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ee76a5afeb8f5fbd6ce921f89978194c\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+350            </intent-filter>
+351            <intent-filter>
+351-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ee76a5afeb8f5fbd6ce921f89978194c\transformed\profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+352                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+352-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ee76a5afeb8f5fbd6ce921f89978194c\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+352-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ee76a5afeb8f5fbd6ce921f89978194c\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+353            </intent-filter>
+354            <intent-filter>
+354-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ee76a5afeb8f5fbd6ce921f89978194c\transformed\profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+355                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+355-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ee76a5afeb8f5fbd6ce921f89978194c\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+355-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ee76a5afeb8f5fbd6ce921f89978194c\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+356            </intent-filter>
+357            <intent-filter>
+357-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ee76a5afeb8f5fbd6ce921f89978194c\transformed\profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+358                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+358-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ee76a5afeb8f5fbd6ce921f89978194c\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+358-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Asus\.gradle\caches\8.10.2\transforms\ee76a5afeb8f5fbd6ce921f89978194c\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+359            </intent-filter>
+360        </receiver>
+361
+362        <service
+362-->[com.google.android.datatransport:transport-backend-cct:3.1.9] C:\Users\Asus\.gradle\caches\8.10.2\transforms\5cc390e8a0c12d1577b178162ca30b78\transformed\transport-backend-cct-3.1.9\AndroidManifest.xml:28:9-34:19
+363            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+363-->[com.google.android.datatransport:transport-backend-cct:3.1.9] C:\Users\Asus\.gradle\caches\8.10.2\transforms\5cc390e8a0c12d1577b178162ca30b78\transformed\transport-backend-cct-3.1.9\AndroidManifest.xml:29:13-103
+364            android:exported="false" >
+364-->[com.google.android.datatransport:transport-backend-cct:3.1.9] C:\Users\Asus\.gradle\caches\8.10.2\transforms\5cc390e8a0c12d1577b178162ca30b78\transformed\transport-backend-cct-3.1.9\AndroidManifest.xml:30:13-37
+365            <meta-data
+365-->[com.google.android.datatransport:transport-backend-cct:3.1.9] C:\Users\Asus\.gradle\caches\8.10.2\transforms\5cc390e8a0c12d1577b178162ca30b78\transformed\transport-backend-cct-3.1.9\AndroidManifest.xml:31:13-33:39
+366                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+366-->[com.google.android.datatransport:transport-backend-cct:3.1.9] C:\Users\Asus\.gradle\caches\8.10.2\transforms\5cc390e8a0c12d1577b178162ca30b78\transformed\transport-backend-cct-3.1.9\AndroidManifest.xml:32:17-94
+367                android:value="cct" />
+367-->[com.google.android.datatransport:transport-backend-cct:3.1.9] C:\Users\Asus\.gradle\caches\8.10.2\transforms\5cc390e8a0c12d1577b178162ca30b78\transformed\transport-backend-cct-3.1.9\AndroidManifest.xml:33:17-36
+368        </service>
+369        <service
+369-->[com.google.android.datatransport:transport-runtime:3.1.9] C:\Users\Asus\.gradle\caches\8.10.2\transforms\628b0e09c2aee0948f10deef04b50a6d\transformed\transport-runtime-3.1.9\AndroidManifest.xml:26:9-30:19
+370            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+370-->[com.google.android.datatransport:transport-runtime:3.1.9] C:\Users\Asus\.gradle\caches\8.10.2\transforms\628b0e09c2aee0948f10deef04b50a6d\transformed\transport-runtime-3.1.9\AndroidManifest.xml:27:13-117
+371            android:exported="false"
+371-->[com.google.android.datatransport:transport-runtime:3.1.9] C:\Users\Asus\.gradle\caches\8.10.2\transforms\628b0e09c2aee0948f10deef04b50a6d\transformed\transport-runtime-3.1.9\AndroidManifest.xml:28:13-37
+372            android:permission="android.permission.BIND_JOB_SERVICE" >
+372-->[com.google.android.datatransport:transport-runtime:3.1.9] C:\Users\Asus\.gradle\caches\8.10.2\transforms\628b0e09c2aee0948f10deef04b50a6d\transformed\transport-runtime-3.1.9\AndroidManifest.xml:29:13-69
+373        </service>
+374
+375        <receiver
+375-->[com.google.android.datatransport:transport-runtime:3.1.9] C:\Users\Asus\.gradle\caches\8.10.2\transforms\628b0e09c2aee0948f10deef04b50a6d\transformed\transport-runtime-3.1.9\AndroidManifest.xml:32:9-34:40
+376            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+376-->[com.google.android.datatransport:transport-runtime:3.1.9] C:\Users\Asus\.gradle\caches\8.10.2\transforms\628b0e09c2aee0948f10deef04b50a6d\transformed\transport-runtime-3.1.9\AndroidManifest.xml:33:13-132
+377            android:exported="false" />
+377-->[com.google.android.datatransport:transport-runtime:3.1.9] C:\Users\Asus\.gradle\caches\8.10.2\transforms\628b0e09c2aee0948f10deef04b50a6d\transformed\transport-runtime-3.1.9\AndroidManifest.xml:34:13-37
+378    </application>
+379
+380</manifest>

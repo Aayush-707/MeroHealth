@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.yourcompany.merohealth.app-mergeDebugResources-63:/values-v31/values-v31.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Asus\\.gradle\\caches\\8.10.2\\transforms\\4d594256c733cdb1816fea360cd4de31\\transformed\\core-splashscreen-1.2.0-alpha02\\res\\values-v31\\values-v31.xml",
+                    "from": {
+                        "startLines": "2,6,13",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,295,713",
+                        "endLines": "5,12,17",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "290,708,937"
+                    }
+                }
+            ]
+        }
+    ]
+}

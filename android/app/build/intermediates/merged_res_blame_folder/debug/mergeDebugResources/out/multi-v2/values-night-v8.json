@@ -1,0 +1,73 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.yourcompany.merohealth.app-mergeDebugResources-63:/values-night-v8/values-night-v8.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Asus\\.gradle\\caches\\8.10.2\\transforms\\4d594256c733cdb1816fea360cd4de31\\transformed\\core-splashscreen-1.2.0-alpha02\\res\\values-night-v8\\values-night-v8.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "195"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Asus\\MeroHealth\\node_modules\\@react-native-community\\datetimepicker\\android\\build\\intermediates\\packaged_res\\debug\\packageDebugResources\\values-night-v8\\values-night-v8.xml",
+                    "from": {
+                        "startLines": "2,5",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,200",
+                        "endLines": "4,7",
+                        "endColumns": "9,9",
+                        "endOffsets": "195,340"
+                    },
+                    "to": {
+                        "startLines": "5,8",
+                        "startColumns": "4,4",
+                        "startOffsets": "200,345",
+                        "endLines": "7,10",
+                        "endColumns": "9,9",
+                        "endOffsets": "340,485"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Asus\\.gradle\\caches\\8.10.2\\transforms\\d5899ca58e1d1c4c5de7a45fa3b45756\\transformed\\appcompat-1.7.0\\res\\values-night-v8\\values-night-v8.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,125,209,293,389,491,593,687",
+                        "endColumns": "69,83,83,95,101,101,93,88",
+                        "endOffsets": "120,204,288,384,486,588,682,771"
+                    },
+                    "to": {
+                        "startLines": "11,12,13,14,15,16,17,34",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "490,560,644,728,824,926,1028,2984",
+                        "endColumns": "69,83,83,95,101,101,93,88",
+                        "endOffsets": "555,639,723,819,921,1023,1117,3068"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Asus\\.gradle\\caches\\8.10.2\\transforms\\627c185390dbcbf44f4bfd17dcbbefa2\\transformed\\material-1.2.1\\res\\values-night-v8\\values-night-v8.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,143,267,369,471,587,689,803,931,1047,1169,1305,1425,1559,1679,1791,1917,2055,2179,2309,2431,2569,2685",
+                        "endColumns": "87,123,101,101,115,101,113,127,115,121,135,119,133,119,111,125,137,123,129,121,137,115,119",
+                        "endOffsets": "138,262,364,466,582,684,798,926,1042,1164,1300,1420,1554,1674,1786,1912,2050,2174,2304,2426,2564,2680,2800"
+                    },
+                    "to": {
+                        "startLines": "18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,35,36,37,38,39,40,41",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1122,1210,1334,1436,1538,1654,1756,1870,1998,2114,2236,2372,2492,2626,2746,2858,3073,3211,3335,3465,3587,3725,3841",
+                        "endColumns": "87,123,101,101,115,101,113,127,115,121,135,119,133,119,111,125,137,123,129,121,137,115,119",
+                        "endOffsets": "1205,1329,1431,1533,1649,1751,1865,1993,2109,2231,2367,2487,2621,2741,2853,2979,3206,3330,3460,3582,3720,3836,3956"
+                    }
+                }
+            ]
+        }
+    ]
+}
