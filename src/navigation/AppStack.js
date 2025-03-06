@@ -8,11 +8,13 @@ import AddMedicineScreen from '../screens/AddMedicineScreen';
 import MedicationDetailScreen from '../screens/MedicationDetailScreen';
 import EditMedicineScreen from '../screens/EditMedicineScreen';
 import PatientMedicationsScreen from '../screens/PatientMedicationsScreen';
+import ReminderScreen from '../screens/ReminderScreen';
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
 const UpdateStack = createStackNavigator();
 const AccountStack = createStackNavigator();
+const ReminderStack = createStackNavigator();
 const Stack = createStackNavigator();
 
 const headerStyle = {
@@ -131,6 +133,20 @@ function AccountStackScreen() {
   );
 }
 
+function ReminderStackScreen() {
+  return (
+    <ReminderStack.Navigator screenOptions={headerStyle}>
+      <ReminderStack.Screen
+        name="RemindersMain"
+        component={ReminderScreen}
+        options={{ 
+          title: 'Medication Reminders',
+          headerLeft: () => null
+        }}
+      />
+    </ReminderStack.Navigator>
+  );
+}
 
 export default function AppStackScreen() {
   return (
@@ -139,6 +155,7 @@ export default function AppStackScreen() {
         tabBarIcon: ({ color }) => {
           const icons = {
             Home: 'home',
+            Reminders: 'notifications',
             Update: 'update',
             Account: 'person',
           };
@@ -183,6 +200,11 @@ export default function AppStackScreen() {
         name="Home" 
         component={HomeStackScreen} 
         options={{ title: 'Home' }}
+      />
+      <Tab.Screen 
+        name="Reminders" 
+        component={ReminderStackScreen} 
+        options={{ title: 'Reminders' }}
       />
       <Tab.Screen 
         name="Update" 
