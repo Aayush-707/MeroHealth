@@ -1,3 +1,4 @@
+import React, {useEffect} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Provider as PaperProvider } from 'react-native-paper';
@@ -26,6 +27,14 @@ function RootNavigator() {
 }
 
 export default function App() {
+
+  useEffect(() => {
+    const init = async () => {
+    await initFirebaseMessaging();
+    }
+
+    init();
+  }, []);
   return (
     <PaperProvider>
       <UserProvider>
@@ -40,3 +49,4 @@ export default function App() {
     </PaperProvider>
   );
 }
+
