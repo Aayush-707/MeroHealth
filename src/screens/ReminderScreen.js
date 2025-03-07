@@ -55,14 +55,7 @@ export default function ReminderScreen() {
   const handleTakeMedication = async (reminderId) => {
     try {
       // Mark the reminder as taken
-      await api.post(`/schedules/reminders/${reminderId}/mark-taken/`); // Change to POST
-      
-      // Create adherence record
-      await api.post('/schedules/adherence-records/', {
-        reminder: reminderId,
-        taken_time: new Date().toISOString(),
-        status: 'TAKEN'  // Use uppercase to match your model's choices
-      });
+      await api.post(`/schedules/reminders/${reminderId}/mark-taken/`);
       
       // Refresh reminders list
       fetchReminders();
@@ -73,13 +66,9 @@ export default function ReminderScreen() {
   };
   
   const handleSkipMedication = async (reminderId) => {
-    try {
-      // Create adherence record with Skipped status
-      await api.post('/schedules/adherence-records/', {
-        reminder: reminderId,
-        taken_time: new Date().toISOString(),
-        status: 'SKIPPED'  // Use uppercase to match your model's choices
-      });
+   try {
+      //  Mark the reminder as skipped (only)
+      await api.post(`/schedules/reminders/${reminderId}/mark-skipped/`); //Use new skip_medication endpoint
       
       // Refresh reminders list
       fetchReminders();
