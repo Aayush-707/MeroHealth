@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { View, ScrollView, StyleSheet, Alert } from 'react-native';
+import moment from 'moment-timezone';
 import { useFocusEffect } from '@react-navigation/native';
 import { Card, Title, Paragraph, Button, Divider, IconButton } from 'react-native-paper';
 import { MedicineContext } from '../context/MedicineContext';
@@ -81,6 +82,12 @@ export default function MedicationDetailScreen({ route, navigation }) {
   const formatTime = (timeString) => {
     if (!timeString) return 'Time not set';
     try {
+      // Handle ISO string format
+      if (timeString.includes('T') && timeString.includes('Z')) {
+        return moment.utc(timeString).tz('Asia/Kathmandu').format('hh:mm A');
+      }
+      
+      // Handle HH:MM format
       const [hours, minutes] = timeString.split(':');
       const date = new Date();
       date.setHours(parseInt(hours, 10));
@@ -95,6 +102,7 @@ export default function MedicationDetailScreen({ route, navigation }) {
       return timeString;
     }
   };
+  
 
   const formatText = (value) => {
     const mapping = {

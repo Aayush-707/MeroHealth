@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, StyleSheet, FlatList, Text } from 'react-native';
+import moment from 'moment-timezone';
 import { Card, Title, Paragraph, Button, ActivityIndicator } from 'react-native-paper';
 import { useFocusEffect } from '@react-navigation/native';
 import ReminderModal from '../components/ReminderModal';
@@ -11,6 +12,8 @@ export default function ReminderScreen() {
   const [modalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [shownReminders, setShownReminders] = useState([]);
+
 
   useFocusEffect(
     useCallback(() => {
@@ -30,6 +33,7 @@ export default function ReminderScreen() {
     try {
       setLoading(true);
       const response = await api.get('/schedules/reminders/');
+      console.log('Reminder times:', response.data.map(r => r.sent_time));
       setReminders(response.data);
       setLoading(false);
     } catch (error) {
@@ -38,19 +42,26 @@ export default function ReminderScreen() {
       setLoading(false);
     }
   };
+  
 
   const checkReminders = () => {
-    const now = new Date();
+    const now = moment().tz('Asia/Kathmandu');
+    // Add a state variable to track shown reminders
     const dueReminder = reminders.find(reminder => {
-      const reminderTime = new Date(reminder.sent_time);
-      return reminderTime <= now && reminder.status === 'PENDING';
+      const reminderTime = moment.utc(reminder.sent_time).tz('Asia/Kathmandu');
+      return reminderTime.isBefore(now) && 
+             reminder.status === 'PENDING' && 
+             !shownReminders.includes(reminder.id);
     });
-
+  
     if (dueReminder) {
       setCurrentReminder(dueReminder);
       setModalVisible(true);
+      // Add to shown reminders list
+      setShownReminders(prev => [...prev, dueReminder.id]);
     }
   };
+  
 
   const handleTakeMedication = async (reminderId) => {
     try {
@@ -85,7 +96,7 @@ export default function ReminderScreen() {
         <Paragraph>Dosage: {item.schedule_details?.dosage || 'N/A'}</Paragraph>
         <Paragraph>Frequency: {item.schedule_details?.frequency || 'N/A'}</Paragraph>
         <Paragraph>
-        Date & Time: {new Date(item.sent_time).toLocaleDateString()} at {new Date(item.sent_time).toLocaleTimeString()}
+        Date & Time: {moment.utc(item.sent_time).tz('Asia/Kathmandu').format('YYYY-MM-DD hh:mm:ss A')}
       </Paragraph>
         <Paragraph>Status: {item.status}</Paragraph>
       </Card.Content>

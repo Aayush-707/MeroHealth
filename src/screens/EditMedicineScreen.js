@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { View, StyleSheet, Alert, Text, TouchableOpacity, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
+import moment from 'moment-timezone';
 import { Picker } from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { MedicineContext } from '../context/MedicineContext';
@@ -15,7 +16,10 @@ export default function EditMedicineScreen({ route, navigation }) {
     dosage: schedule?.dosage || '',
     frequency: schedule?.frequency || '',
     timing: schedule?.timing || '',
-    time: schedule?.time ? new Date(`1970-01-01T${schedule.time}`) : new Date(),
+    time: schedule?.time 
+    ? moment.utc(schedule.time, "HH:mm:ss").tz('Asia/Kathmandu').toDate() 
+    : new Date(),
+
   });
 
   const { refreshMedicines } = useContext(MedicineContext);
@@ -27,15 +31,10 @@ export default function EditMedicineScreen({ route, navigation }) {
         instructions: medicine.instructions,
       });
 
-      const timeString =
-        medicine.time instanceof Date
-          ? medicine.time.toLocaleTimeString('en-US', {
-              hour12: false,
-              hour: '2-digit',
-              minute: '2-digit',
-              second: '2-digit',
-            })
-          : medicine.time;
+      const timeString = medicine.time instanceof Date
+        ? moment(medicine.time).utc().format('HH:mm:ss')
+        : medicine.time;
+
 
       await api.put(`/medications/schedules/${medicationId}/`, {
         medication: medication.id,
@@ -123,11 +122,11 @@ export default function EditMedicineScreen({ route, navigation }) {
           />
 
           <TouchableOpacity onPress={() => setVisible(true)} style={styles.timeButton}>
-            <Text style={styles.timeButtonText}>
-              {medicine.time instanceof Date
-                ? medicine.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })
-                : 'Select Time'}
-            </Text>
+          <Text style={styles.timeButtonText}>
+            {medicine.time instanceof Date
+              ? moment(medicine.time).format('hh:mm A')
+              : 'Select Time'}
+          </Text>
           </TouchableOpacity>
 
           {visible && (

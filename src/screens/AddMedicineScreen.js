@@ -19,15 +19,11 @@ const AddMedicineScreen = ({ navigation }) => {
   const { createMedicationWithSchedule } = useContext(MedicineContext);
 
   const handleSubmit = async () => {
-    const formattedTime =
-      medicine.time instanceof Date
-        ? medicine.time.toLocaleTimeString("en-US", {
-            hour12: false,
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
-          })
-        : medicine.time;
+    const formattedTime = medicine.time instanceof Date
+      ? medicine.time.toTimeString().split(' ')[0] // This will give "HH:MM:SS" format
+      : medicine.time;
+
+
 
     const result = await createMedicationWithSchedule({
       ...medicine,

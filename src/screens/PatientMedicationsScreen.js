@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment-timezone';
 import { View, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
 import { Card, Title, Paragraph, Text } from 'react-native-paper';
 import api from '../services/api';
@@ -27,12 +28,20 @@ const PatientMedicationsScreen = ({ route }) => {
 
   const formatTime = (timeString) => {
     if (!timeString) return '';
+    
+    // Handle ISO string format
+    if (timeString.includes('T') && timeString.includes('Z')) {
+      return moment.utc(timeString).tz('Asia/Kathmandu').format('hh:mm A');
+    }
+    
+    // Handle HH:MM format
     const [hours, minutes] = timeString.split(':');
     const date = new Date();
     date.setHours(parseInt(hours, 10));
     date.setMinutes(parseInt(minutes, 10));
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
+  
 
   if (isLoading) {
     return (
