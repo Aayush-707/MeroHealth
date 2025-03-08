@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "MeroHealth",
+    "owner": "rukeshpaudel",
     "slug": "merohealth",
     "version": "1.0.0",
     "orientation": "portrait",
