@@ -236,5 +236,6 @@ const styles = StyleSheet.create({
   picker: {
     height: 50,
   },
+
 });
 

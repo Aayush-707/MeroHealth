@@ -1,0 +1,81 @@
+const checkReminders = () => {
+  const now = moment().tz('Asia/Kathmandu');
+  
+  const dueReminder = reminders.find(reminder => {
+    const reminderTime = moment.utc(reminder.sent_time).tz('Asia/Kathmandu');
+    return reminderTime.isSameOrBefore(now) && 
+           reminder.status === 'PENDING' && 
+           !shownReminders.includes(reminder.id);
+  });
+
+  if (dueReminder) {
+    console.log('DUE REMINDER FOUND:', dueReminder.id);
+    setCurrentReminder(dueReminder);
+    setModalVisible(true);
+    setShownReminders(prev => [...prev, dueReminder.id]);
+    
+    // Use direct alert while debugging notification issues
+    Alert.alert(
+      "Medication Reminder",
+      `Time to take ${dueReminder.schedule_details?.medication || 'your medication'}`
+    );
+  }
+};
+
+const handleTakeMedication = async (reminderId) => {
+    try {
+      // Mark the reminder as taken
+      await api.post(`/schedules/reminders/${reminderId}/mark-taken/`);
+      
+      // Refresh reminders list
+      fetchReminders();
+      setModalVisible(false);
+    } catch (error) {
+      console.error('Error marking medication as taken:', error);
+    }
+  };
+
+
+  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& &&&&&&&&&&&&&&&&&&&&&&&&
+  Based on your logs, I can see why the alert isn't appearing for your "Noti" medication reminder. There are two key issues happening:
+
+    Timing mismatch between backend and frontend:
+    Your Celery backend found and processed the reminder correctly:
+
+    text
+    [2025-03-08 20:24:00,136: WARNING/ForkPoolWorker-4] Processing reminder 347 with time 2025-03-08 14:39:00+00:00
+    [2025-03-08 20:24:00,180: WARNING/ForkPoolWorker-2] Successfully sending notification for Noti
+
+    But the reminder status was updated to SENT immediately before your frontend could detect it as PENDING.
+
+    Frontend not seeing newly added reminders quickly enough:
+    Looking at your logs, the reminder doesn't appear in the "All reminders" list in your earlier checks, suggesting it was marked as SENT before your 10-second frontend check cycle could detect it.
+
+To fix this:
+
+    Update your handleSkipMedication function to match your handleTakeMedication by immediately updating local state:
+
+javascript
+const handleSkipMedication = async (reminderId) => {
+  try {
+    // Update local state immediately to prevent duplicate alerts
+    setReminders(prev => 
+      prev.map(r => r.id === reminderId ? {...r, status: 'SKIPPED'} : r)
+    );
+    
+    // Close modal first
+    setModalVisible(false);
+    
+    // Then update server
+    await api.post(`/schedules/reminders/${reminderId}/mark-skipped/`);
+    
+    // Refresh list after server update
+    fetchReminders();
+  } catch (error) {
+    console.error('Error marking medication as skipped:', error);
+  }
+};
+
+    Consider adding a separate check specifically for newly added reminders.
+
+The core issue is that your backend processes and updates the reminder status faster than your frontend can detect it, causing you to miss the alert window.
