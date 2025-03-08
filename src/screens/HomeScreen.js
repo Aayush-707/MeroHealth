@@ -64,6 +64,7 @@ export default function HomeScreen({ navigation }) {
                     <Button 
                       mode="contained" 
                       style={styles.viewButton}
+                      labelStyle={styles.viewButtonText}
                       onPress={() => navigation.navigate('PatientMedications', { 
                         patientId: item.patient_id 
                       })}
@@ -194,5 +195,8 @@ const styles = StyleSheet.create({
   viewButton: {
     marginTop: 10,
     backgroundColor: '#1a237e',
+  },
+  viewButtonText: {
+    color: 'white',
   },
 });

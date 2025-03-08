@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   medicineTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#1a237e',
+    color: '#ffffff',
   },
   emptyText: {
     textAlign: 'center',
@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
     color: '#666',
     marginTop: 20,
   },
+  
 });
 
 export default PatientMedicationsScreen;

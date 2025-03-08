@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   takeButton: {
-    backgroundColor: '#1a237e',
+    backgroundColor: '#5F9EA0',
     flex: 1,
     marginRight: 5,
   },
