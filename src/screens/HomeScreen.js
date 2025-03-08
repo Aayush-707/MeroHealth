@@ -58,8 +58,13 @@ export default function HomeScreen({ navigation }) {
               <Card style={styles.card}>
                 <Card.Content>
                   <Title style={styles.medicineTitle}>{item.patient_name}</Title>
-                  <Paragraph>Email: {item.patient_email}</Paragraph>
-                  <Paragraph>Relationship: {item.relationship}</Paragraph>
+                  {/* Add Email and Relationship Paragraphs here */}
+                  <Paragraph style={styles.darkText}>
+                    Email: {item.patient_email}
+                  </Paragraph>
+                  <Paragraph style={styles.darkText}>
+                    Relationship: {item.relationship}
+                  </Paragraph>
                   {item.can_view_adherence && (
                     <Button 
                       mode="contained" 
@@ -198,5 +203,10 @@ const styles = StyleSheet.create({
   },
   viewButtonText: {
     color: 'white',
+  },
+  darkText: {
+    fontSize: 16,
+    color: "black",
+    fontWeight: "600",
   },
 });
